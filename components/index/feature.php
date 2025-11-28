@@ -5,32 +5,32 @@
     <div class="flex flex-wrap justify-center gap-4">
         <!-- Category Card -->
         <div class="flex flex-col items-center w-28">
-            <img src="/assets/images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
+            <img src="images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
             <p class="text-xs text-center font-medium uppercase">Thiết kế nội thất chung cư</p>
         </div>
 
         <div class="flex flex-col items-center w-28">
-            <img src="/assets/images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
+            <img src="images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
             <p class="text-xs text-center font-medium uppercase">Thiết kế nội thất biệt thự</p>
         </div>
 
         <div class="flex flex-col items-center w-28">
-            <img src="/assets/images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
+            <img src="images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
             <p class="text-xs text-center font-medium uppercase">Thiết kế nội thất nhà phố</p>
         </div>
 
         <div class="flex flex-col items-center w-28">
-            <img src="/assets/images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
+            <img src="images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
             <p class="text-xs text-center font-medium uppercase">Thiết kế nội thất nhà hàng</p>
         </div>
 
         <div class="flex flex-col items-center w-28">
-            <img src="/assets/images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
+            <img src="images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
             <p class="text-xs text-center font-medium uppercase">Thiết kế nội thất văn phòng</p>
         </div>
 
         <div class="flex flex-col items-center w-28">
-            <img src="/assets/images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
+            <img src="images/sample.jpg" class="w-full h-20 object-cover rounded-md mb-2" alt="">
             <p class="text-xs text-center font-medium uppercase">Thiết kế nội thất showroom</p>
         </div>
     </div>
@@ -43,7 +43,7 @@
     <div class="flex flex-wrap justify-between gap-6">
         <!-- Project Card -->
         <div class="flex flex-col w-[30%] bg-gray-100 rounded-md shadow-sm overflow-hidden">
-            <img src="/assets/images/sample.jpg" class="h-40 w-full object-cover" alt="">
+            <img src="images/sample.jpg" class="h-40 w-full object-cover" alt="">
             <div class="p-3 flex flex-col gap-2">
                 <div class="flex items-center gap-2 text-xs text-gray-500">
                     <span>04 / 2023</span>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="flex flex-col w-[30%] bg-gray-100 rounded-md shadow-sm overflow-hidden">
-            <img src="/assets/images/sample.jpg" class="h-40 w-full object-cover" alt="">
+            <img src="images/sample.jpg" class="h-40 w-full object-cover" alt="">
             <div class="p-3 flex flex-col gap-2">
                 <div class="flex items-center gap-2 text-xs text-gray-500">
                     <span>04 / 2023</span>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="flex flex-col w-[30%] bg-gray-100 rounded-md shadow-sm overflow-hidden">
-            <img src="/assets/images/sample.jpg" class="h-40 w-full object-cover" alt="">
+            <img src="images/sample.jpg" class="h-40 w-full object-cover" alt="">
             <div class="p-3 flex flex-col gap-2">
                 <div class="flex items-center gap-2 text-xs text-gray-500">
                     <span>03 / 2023</span>
@@ -77,7 +77,7 @@
 
         <!-- Project Card -->
         <div class="flex flex-col w-[30%] bg-gray-100 rounded-md shadow-sm overflow-hidden">
-            <img src="/assets/images/sample.jpg" class="h-40 w-full object-cover" alt="">
+            <img src="images/sample.jpg" class="h-40 w-full object-cover" alt="">
             <div class="p-3 flex flex-col gap-2">
                 <div class="flex items-center gap-2 text-xs text-gray-500">
                     <span>04 / 2023</span>
@@ -88,7 +88,7 @@
         </div>
 
         <div class="flex flex-col w-[30%] bg-gray-100 rounded-md shadow-sm overflow-hidden">
-            <img src="/assets/images/sample.jpg" class="h-40 w-full object-cover" alt="">
+            <img src="images/sample.jpg" class="h-40 w-full object-cover" alt="">
             <div class="p-3 flex flex-col gap-2">
                 <div class="flex items-center gap-2 text-xs text-gray-500">
                     <span>04 / 2023</span>
@@ -99,7 +99,7 @@
         </div>
 
         <div class="flex flex-col w-[30%] bg-gray-100 rounded-md shadow-sm overflow-hidden">
-            <img src="/assets/images/sample.jpg" class="h-40 w-full object-cover" alt="">
+            <img src="images/sample.jpg" class="h-40 w-full object-cover" alt="">
             <div class="p-3 flex flex-col gap-2">
                 <div class="flex items-center gap-2 text-xs text-gray-500">
                     <span>03 / 2023</span>

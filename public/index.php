@@ -12,32 +12,32 @@ if (file_exists(BASE_PATH . 'Core/utils.php')) {
     require_once BASE_PATH . 'Core/utils.php';
 }
 
+// $BASE_URL = getBaseUrl();
 
-$BASE_URL = getBaseUrl();
+// /**
+//  * Normalize URI for routing
+//  */
+// $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-/**
- * Normalize URI for routing
- */
+// // Remove folder prefix for Apache
+// if ($BASE_URL !== '' && $BASE_URL !== '/') {
+//     $uri = preg_replace('#^' . $BASE_URL . '#', '', $uri);
+// }
+
+// // Normalize empty uri
+// if ($uri === '' || $uri === false) {
+//     $uri = '/';
+// }
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Remove folder prefix for Apache
-if ($BASE_URL !== '' && $BASE_URL !== '/') {
-    $uri = preg_replace('#^' . $BASE_URL . '#', '', $uri);
-}
 
-// Normalize empty uri
-if ($uri === '' || $uri === false) {
-    $uri = '/';
-}
 
 $router = new \Core\Router(); // autoloader should handle this
-// Register routes
 require_once BASE_PATH . 'routes-register.php';
 
 try {
-    pprint($uri);
     $router->dispatch($_SERVER['REQUEST_METHOD'], $uri);
-
 } catch (Error $e) {
     error_log('Router instance is not available: ' . $e->getMessage());
 }

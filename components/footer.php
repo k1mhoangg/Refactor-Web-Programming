@@ -5,7 +5,7 @@
     <!-- 1. Logo & Info -->
     <div class="flex-1 min-w-[220px] max-w-[280px]">
       <div class="flex items-center gap-2 mb-4">
-        <img src="/assets/images/sample.jpg" alt="Logo" class="w-10 h-10 object-contain">
+        <img src="images/sample.jpg" alt="Logo" class="w-10 h-10 object-contain">
         <span class="text-yellow-400 font-semibold text-lg">HOME DECOR</span>
       </div>
       <p class="text-gray-400 text-sm leading-6">
@@ -82,10 +82,10 @@
     class="border-t border-gray-700 mt-10 pt-4 w-[90%] mx-auto flex flex-wrap justify-between items-center text-gray-500 text-xs">
     <p>© Bản quyền thuộc về <span class="text-gray-300">Home Decor Việt Nam</span> | Cung cấp bởi Sapo</p>
     <div class="flex items-center gap-2 mt-2 md:mt-0">
-      <img src="/assets/images/sample.jpg" alt="Visa" class="w-10 h-6 object-contain bg-gray-700">
-      <img src="/assets/images/sample.jpg" alt="Mastercard" class="w-10 h-6 object-contain bg-gray-700">
-      <img src="/assets/images/sample.jpg" alt="PayPal" class="w-10 h-6 object-contain bg-gray-700">
-      <img src="/assets/images/sample.jpg" alt="Discover" class="w-10 h-6 object-contain bg-gray-700">
+      <img src="images/sample.jpg" alt="Visa" class="w-10 h-6 object-contain bg-gray-700">
+      <img src="images/sample.jpg" alt="Mastercard" class="w-10 h-6 object-contain bg-gray-700">
+      <img src="images/sample.jpg" alt="PayPal" class="w-10 h-6 object-contain bg-gray-700">
+      <img src="images/sample.jpg" alt="Discover" class="w-10 h-6 object-contain bg-gray-700">
     </div>
   </div>
 </footer>

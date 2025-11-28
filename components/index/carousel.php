@@ -5,7 +5,7 @@
             <div id="slides" class="flex transition-transform duration-500 ease-in-out w-full m-0 p-0">
                 <!-- Slide 1 -->
                 <div class="carousel-slide flex-none w-full relative">
-                    <img src="./assets/images/sample.jpg" alt="Phòng khách trang trí"
+                    <img src="images/sample.jpg" alt="Phòng khách trang trí"
                         class="w-full h-56 sm:h-72 md:h-96 lg:h-[112] object-cover rounded-lg shadow-md">
                     <div class="absolute left-4 bottom-6 bg-black bg-opacity-40 text-white px-3 py-2 rounded z-10">
                         <h3 class="text-lg font-semibold">Thiết kế phòng khách</h3>
@@ -14,7 +14,7 @@
                 </div>
                 <!-- Slide 2 -->
                 <div class="carousel-slide flex-none w-full relative">
-                    <img src="./assets/images/sample.jpg" alt="Phòng ngủ đẹp"
+                    <img src="images/sample.jpg" alt="Phòng ngủ đẹp"
                         class="w-full h-56 sm:h-72 md:h-96 lg:h-[112] object-cover rounded-lg shadow-md">
                     <div class="absolute left-4 bottom-6 bg-black bg-opacity-40 text-white px-3 py-2 rounded z-10">
                         <h3 class="text-lg font-semibold">Phòng ngủ ấm cúng</h3>
@@ -23,7 +23,7 @@
                 </div>
                 <!-- Slide 3 -->
                 <div class="carousel-slide flex-none w-full relative">
-                    <img src="./assets/images/sample.jpg" alt="Bàn ăn trang trí"
+                    <img src="images/sample.jpg" alt="Bàn ăn trang trí"
                         class="w-full h-56 sm:h-72 md:h-96 lg:h-[112] object-cover rounded-lg shadow-md">
                     <div class="absolute left-4 bottom-6 bg-black bg-opacity-40 text-white px-3 py-2 rounded z-10">
                         <h3 class="text-lg font-semibold">Khu vực ăn uống</h3>

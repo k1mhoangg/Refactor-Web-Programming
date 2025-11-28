@@ -7,7 +7,7 @@
     <title>Liên hệ | HomeDecor</title>
 
     <!-- External stylesheets -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -15,20 +15,17 @@
 
 <body class="">
     <!-- Navigation header component -->
-    <?php include 'components/header.php'; ?>
+    <?php include '../components/header.php'; ?>
 
     <!-- Contact information section -->
-    <?php include 'components/contact/info.php'; ?>
+    <?php include '../components/contact/info.php'; ?>
 
     <!-- Contact form section -->
-    <?php include 'components/contact/form.php'; ?>
+    <?php include '../components/contact/form.php'; ?>
 
     <!-- Website footer component -->
-    <?php include 'components/footer.php'; ?>
+    <?php include '../components/footer.php'; ?>
 
-    <!-- JavaScript files -->
-    <script src=" assets/js/script.js">
-    </script>
 </body>
 
 </html>

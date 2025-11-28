@@ -6,11 +6,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
   <div class="container">
     <div class="logo">🏡 <span>HomeDecor</span></div>
     <nav class="main-nav">
-      <a href="index.php" <?php echo ($current_page == 'index.php') ? 'class="active"' : ''; ?>>Trang chủ</a>
+      <a href="/" <?php echo ($current_page == 'index.php') ? 'class="active"' : ''; ?>>Trang chủ</a>
       <a href="about.php" <?php echo ($current_page == 'about.php') ? 'class="active"' : ''; ?>>Giới thiệu</a>
       <a href="services.php" <?php echo ($current_page == 'services.php') ? 'class="active"' : ''; ?>>Dịch vụ</a>
       <a href="pricing.php" <?php echo ($current_page == 'pricing.php') ? 'class="active"' : ''; ?>>Bảng giá</a>
-      <a href="contact.php" <?php echo ($current_page == 'contact.php') ? 'class="active"' : ''; ?>>Liên hệ</a>
+      <a href="contact" <?php echo ($current_page == 'contact.php') ? 'class="active"' : ''; ?>>Liên hệ</a>
       <a href="faq.php" <?php echo ($current_page == 'faq.php') ? 'class="active"' : ''; ?>>Hỏi đáp</a>
       <a href="news.php" <?php echo ($current_page == 'news.php') ? 'class="active"' : ''; ?>>Tin tức</a>
     </nav>

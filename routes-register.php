@@ -1,10 +1,10 @@
 <?php
 
 $router->addRoute('GET', '/', function () {
-    require_once BASE_PATH . 'home.php';
+    require_once BASE_PATH . 'view/home.php';
 });
 $router->addRoute('GET', '/contact', function () {
-    require_once BASE_PATH . 'contact.php';
+    require_once BASE_PATH . 'view/contact.php';
 });
 
 ?>
