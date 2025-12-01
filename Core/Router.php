@@ -14,8 +14,7 @@ class Router
         $this->routes[] = [
             'method' => strtoupper($method),
             'path' => $path,
-            'controller' => $controller, // Controller path
-            'user' => null
+            'controller' => $controller, // Controller path or callable
         ];
 
         return $this;
@@ -25,9 +24,6 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['method'] === strtoupper($method) && $route['path'] === $path) {
-                // $middleware = new CentralMiddleware();
-                // $user = $route['user'] ?? null;
-                // $middleware->handle($user);
 
                 $controllerDef = $route['controller'];
 
@@ -83,22 +79,6 @@ class Router
         echo "404 Not Found";
     }
 
-    public function assignMiddleware($path, $middleware)
-    {
-        foreach ($this->routes as &$route) {
-            if ($route['path'] === $path) {
-                $route['middleware'] = $middleware;
-                break;
-            }
-        }
-    }
-
-    public function assignUser($user)
-    {
-        $this->routes[array_key_last($this->routes)]['user'] = $user;
-
-        return $this;
-    }
 
     public function test()
     {
