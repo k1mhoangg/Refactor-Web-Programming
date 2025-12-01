@@ -1,5 +1,5 @@
 <!-- ===== FOOTER ===== -->
-<footer class="bg-[#111] text-gray-300 w-full pt-10 pb-6 text-sm">
+<footer class="bg-[#111] text-gray-300 w-full pt-10 pb-6 text-sm mt-20">
   <div class="w-[90%] mx-auto flex flex-wrap justify-between gap-8">
 
     <!-- 1. Logo & Info -->

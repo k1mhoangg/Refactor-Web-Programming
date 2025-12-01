@@ -1,4 +1,4 @@
-<form class="w-full max-w-4xl mx-auto bg-white p-6 rounded-md shadow-sm">
+<form class="w-full max-w-4xl mx-auto bg-white p-6 rounded-md shadow-sm" method="POST" action="/contact">
     <div class="grid grid-cols-5 gap-4 items-center mb-4">
         <label for="name" class="col-span-1 font-bold">Họ tên</label>
         <input type="text" id="name" name="name" placeholder="Họ tên*"

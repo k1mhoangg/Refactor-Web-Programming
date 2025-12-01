@@ -13,4 +13,13 @@ function getBaseUrl()
     return rtrim(dirname($scriptName), '/');
 }
 
+function appendControllerPath($path)
+{
+    return 'Controller\\' . $path;
+}
+
+function sanitizeInput($input)
+{
+    return htmlspecialchars(strip_tags($input), ENT_QUOTES, 'UTF-8');
+}
 ?>
