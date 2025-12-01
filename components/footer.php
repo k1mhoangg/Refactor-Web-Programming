@@ -25,7 +25,7 @@
     </div>
 
     <!-- 2. Menu -->
-    <div class="flex-1 min-w-[160px]">
+    <div class="flex-1 min-w-40">
       <h3 class="text-white font-semibold mb-3 uppercase">Menu</h3>
       <ul class="space-y-2 text-gray-400">
         <li>Trang chủ</li>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- 3. Liên kết -->
-    <div class="flex-1 min-w-[160px]">
+    <div class="flex-1 min-w-40">
       <h3 class="text-white font-semibold mb-3 uppercase">Liên kết</h3>
       <ul class="space-y-2 text-gray-400">
         <li>Trang chủ</li>
@@ -49,7 +49,7 @@
     </div>
 
     <!-- 4. Hướng dẫn -->
-    <div class="flex-1 min-w-[160px]">
+    <div class="flex-1 min-w-40">
       <h3 class="text-white font-semibold mb-3 uppercase">Hướng dẫn</h3>
       <ul class="space-y-2 text-gray-400">
         <li>Hướng dẫn mua hàng</li>

@@ -7,7 +7,7 @@
             <div class="flex w-full h-[60vh] overflow-hidden rounded-xl shadow-lg">
                 <!-- Panel 1 -->
                 <a href="https://homedecorvn.com/thi-cong-noi-that-go-oc-cho"
-                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-[3]"
+                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-3"
                     style="background-image: url('images/sample.jpg');">
                     <div
                         class="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -17,7 +17,7 @@
 
                 <!-- Panel 2 -->
                 <a href="https://homedecorvn.com/thi-cong-noi-that-go-oc-cho"
-                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-[3]"
+                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-3"
                     style="background-image: url('images/sample.jpg');">
                     <div
                         class="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -27,7 +27,7 @@
 
                 <!-- Panel 3 -->
                 <a href="https://homedecorvn.com/thi-cong-noi-that-go-oc-cho"
-                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-[3]"
+                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-3"
                     style="background-image: url('images/sample.jpg');">
                     <div
                         class="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -37,7 +37,7 @@
 
                 <!-- Panel 4 -->
                 <a href="https://homedecorvn.com/thi-cong-noi-that-go-oc-cho"
-                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-[3]"
+                    class="flex-1 relative bg-center bg-cover transition-all duration-500 ease-in-out hover:flex-3"
                     style="background-image: url('images/sample.jpg');">
                     <div
                         class="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
