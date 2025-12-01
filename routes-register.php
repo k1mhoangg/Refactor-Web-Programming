@@ -19,6 +19,14 @@ $router->addRoute('POST', '/login', 'Frontend/AuthController@login');
 // Logout requires authenticated user (customer or admin)
 $router->addRoute('GET', '/logout', 'Frontend/AuthController@logout');
 
+// Admin login logout
+// Admin auth (login) - only guest can access admin login
+$router->addRoute('GET', '/admin/login', 'Admin/AuthController@loginForm');
+$router->addRoute('POST', '/admin/login', 'Admin/AuthController@login');
+// Admin logout (admin only)
+$router->addRoute('GET', '/admin/logout', 'Admin/AuthController@logout');
+
+
 // Admin routes (expected namespace: Controller\Admin)
 $router->addRoute('GET', '/admin', 'Admin/AdminController@index');
 $router->addRoute('GET', '/admin/users', 'Admin/AdminController@listUsers');

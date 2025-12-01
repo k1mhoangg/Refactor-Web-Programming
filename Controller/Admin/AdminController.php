@@ -1,42 +1,42 @@
 <?php
 namespace Controller\Admin;
 
-use Core\Database;
 use Model\User;
 use Model\Contact;
 use Model\Page;
 
-class AdminController
+class AdminController extends BaseAdminController
 {
     public function index()
     {
-        if (session_status() === PHP_SESSION_NONE)
-            session_start();
+        // BaseAdminController::__construct đã đảm bảo session và quyền admin
+        $users = User::all();              // trả về mảng User objects
+        $contacts = Contact::getAll();     // trả về mảng assoc
+        $pages = Page::all();              // trả về mảng assoc
 
-        $countUsers = $countContacts = $countPages = 0;
+        $countUsers = is_array($users) ? count($users) : 0;
+        $countContacts = is_array($contacts) ? count($contacts) : 0;
+        $countPages = is_array($pages) ? count($pages) : 0;
+
+        // Chuẩn hóa recentUsers để view dashboard có cấu trúc giống như previous DB rows
         $recentUsers = [];
-        $recentContacts = [];
-
-        try {
-            $db = Database::getInstance()->getConnection();
-
-            $countUsers = (int) $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
-            $countContacts = (int) $db->query("SELECT COUNT(*) FROM contacts")->fetchColumn();
-            // pages table may not exist yet — guard with try/catch
-            try {
-                $countPages = (int) $db->query("SELECT COUNT(*) FROM pages")->fetchColumn();
-            } catch (\Throwable $e) {
-                $countPages = 0;
+        if (!empty($users)) {
+            foreach ($users as $u) {
+                $recentUsers[] = [
+                    'id' => $u->getId(),
+                    'username' => $u->getUsername(),
+                    'email' => $u->getEmail(),
+                    'role' => $u->getRole(),
+                    'created_at' => null, // User model hiện chưa expose created_at
+                ];
             }
-
-            $recentUsers = $db->query("SELECT id, username, display_name, email, role, created_at FROM users ORDER BY created_at DESC LIMIT 5")->fetchAll();
-            $recentContacts = $db->query("SELECT id, name, email, subject, status, created_at FROM contacts ORDER BY created_at DESC LIMIT 5")->fetchAll();
-        } catch (\Throwable $e) {
-            error_log('AdminController::index DB error: ' . $e->getMessage());
-            // keep defaults
+            $recentUsers = array_slice($recentUsers, 0, 5);
         }
 
-        // biến: $countUsers, $countContacts, $countPages, $recentUsers, $recentContacts
+        // recent contacts: use model helper (returns assoc)
+        $recentContacts = Contact::recent(5);
+
+        // Biến truyền vào view: $countUsers, $countContacts, $countPages, $recentUsers, $recentContacts
         require_once BASE_PATH . 'view/admin/dashboard.php';
     }
 

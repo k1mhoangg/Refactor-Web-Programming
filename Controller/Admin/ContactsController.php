@@ -4,18 +4,16 @@ namespace Controller\Admin;
 use Model\Contact;
 use Core\Session;
 
-class ContactsController
+class ContactsController extends BaseAdminController
 {
     public function index()
     {
-        Session::start();
-        $contacts = Contact::getAll();
+        $contacts = Contact::getAll(); // model trả về mảng assoc
         require_once BASE_PATH . 'view/admin/contacts.php';
     }
 
     public function view()
     {
-        Session::start();
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
         $contact = Contact::findById($id);
         if (!$contact) {
@@ -28,7 +26,6 @@ class ContactsController
 
     public function updateStatus()
     {
-        Session::start();
         $id = (int) ($_POST['id'] ?? 0);
         $status = trim($_POST['status'] ?? '');
         if ($id && in_array($status, ['pending', 'replied', 'closed', 'read', 'unread'])) {
@@ -43,7 +40,6 @@ class ContactsController
 
     public function delete()
     {
-        Session::start();
         $id = (int) ($_POST['id'] ?? 0);
         if ($id && Contact::deleteById($id)) {
             Session::setFlash('success', 'Xóa liên hệ thành công.');

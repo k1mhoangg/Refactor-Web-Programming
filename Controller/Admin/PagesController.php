@@ -4,18 +4,16 @@ namespace Controller\Admin;
 use Model\Page;
 use Core\Session;
 
-class PagesController
+class PagesController extends BaseAdminController
 {
     public function index()
     {
-        Session::start();
         $pages = Page::all();
         require_once BASE_PATH . 'view/admin/pages.php';
     }
 
     public function edit()
     {
-        Session::start();
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
         $page = $id ? Page::findById($id) : null;
         require_once BASE_PATH . 'view/admin/page_edit.php';
@@ -23,7 +21,6 @@ class PagesController
 
     public function save()
     {
-        Session::start();
         $id = isset($_POST['id']) ? (int) $_POST['id'] : 0;
         $slug = trim($_POST['slug'] ?? '');
         $title = trim($_POST['title'] ?? '');
@@ -45,7 +42,6 @@ class PagesController
 
     public function delete()
     {
-        Session::start();
         $id = (int) ($_POST['id'] ?? 0);
         if ($id && Page::deleteById($id)) {
             Session::setFlash('success', 'Xóa trang thành công.');
