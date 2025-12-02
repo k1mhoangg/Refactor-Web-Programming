@@ -12,13 +12,35 @@ Hướng dẫn này sẽ giúp bạn cấu hình VirtualHost trên XAMPP cho cá
 
 ## 🐧 Linux
 
-### Bước 1: Mở file cấu hình VirtualHost
+### Bước 1: Kích hoạt VirtualHost trong httpd.conf
+
+Mở file cấu hình Apache:
+
+```bash
+sudo nano /opt/lampp/etc/httpd.conf
+```
+
+Tìm và bỏ dấu `#` ở đầu dòng sau (nếu có):
+
+```apache
+# Include etc/extra/httpd-vhosts.conf
+```
+
+Thành:
+
+```apache
+Include etc/extra/httpd-vhosts.conf
+```
+
+Lưu file: `Ctrl + O`, `Enter`, sau đó thoát: `Ctrl + X`
+
+### Bước 2: Mở file cấu hình VirtualHost
 
 ```bash
 sudo nano /opt/lampp/etc/extra/httpd-vhosts.conf
 ```
 
-### Bước 2: Thêm cấu hình VirtualHost
+### Bước 3: Thêm cấu hình VirtualHost
 
 Thêm đoạn code sau vào cuối file:
 
@@ -42,7 +64,7 @@ Thêm đoạn code sau vào cuối file:
 
 Lưu file: `Ctrl + O`, `Enter`, sau đó thoát: `Ctrl + X`
 
-### Bước 3: Chỉnh sửa file hosts
+### Bước 4: Chỉnh sửa file hosts
 
 ```bash
 sudo nano /etc/hosts
@@ -54,7 +76,7 @@ Thêm dòng sau:
 127.0.0.1   refactor.local
 ```
 
-### Bước 4: Khởi động lại Apache
+### Bước 5: Khởi động lại Apache
 
 ```bash
 sudo /opt/lampp/lampp restart
@@ -64,7 +86,27 @@ sudo /opt/lampp/lampp restart
 
 ## 🪟 Windows
 
-### Bước 1: Mở file cấu hình VirtualHost
+### Bước 1: Kích hoạt VirtualHost trong httpd.conf
+
+Mở file với quyền Administrator:
+
+```
+C:\xampp\apache\conf\httpd.conf
+```
+
+Tìm và bỏ dấu `#` ở đầu dòng sau (nếu có):
+
+```apache
+# Include conf/extra/httpd-vhosts.conf
+```
+
+Thành:
+
+```apache
+Include conf/extra/httpd-vhosts.conf
+```
+
+### Bước 2: Mở file cấu hình VirtualHost
 
 Mở file với quyền Administrator:
 
@@ -74,7 +116,7 @@ C:\xampp\apache\conf\extra\httpd-vhosts.conf
 
 **Lưu ý**: Nhấp chuột phải vào Notepad++ hoặc trình soạn thảo và chọn "Run as Administrator"
 
-### Bước 2: Thêm cấu hình VirtualHost
+### Bước 3: Thêm cấu hình VirtualHost
 
 Thêm đoạn code sau vào cuối file (điều chỉnh đường dẫn cho phù hợp):
 
@@ -98,7 +140,7 @@ Thêm đoạn code sau vào cuối file (điều chỉnh đường dẫn cho ph�
 
 **Quan trọng**: Sử dụng dấu `/` (forward slash) thay vì `\` (backslash) trong đường dẫn.
 
-### Bước 3: Chỉnh sửa file hosts
+### Bước 4: Chỉnh sửa file hosts
 
 Mở file với quyền Administrator:
 
@@ -112,7 +154,7 @@ Thêm dòng sau:
 127.0.0.1   refactor.local
 ```
 
-### Bước 4: Khởi động lại Apache
+### Bước 5: Khởi động lại Apache
 
 Mở XAMPP Control Panel và nhấn nút "Stop" rồi "Start" cho Apache.
 
@@ -120,13 +162,33 @@ Mở XAMPP Control Panel và nhấn nút "Stop" rồi "Start" cho Apache.
 
 ## 🍎 MacOS
 
-### Bước 1: Mở file cấu hình VirtualHost
+### Bước 1: Kích hoạt VirtualHost trong httpd.conf
+
+Mở file cấu hình Apache:
+
+```bash
+sudo nano /Applications/XAMPP/xamppfiles/etc/httpd.conf
+```
+
+Tìm và bỏ dấu `#` ở đầu dòng sau (nếu có):
+
+```apache
+# Include etc/extra/httpd-vhosts.conf
+```
+
+Thành:
+
+```apache
+Include etc/extra/httpd-vhosts.conf
+```
+
+### Bước 2: Mở file cấu hình VirtualHost
 
 ```bash
 sudo nano /Applications/XAMPP/xamppfiles/etc/extra/httpd-vhosts.conf
 ```
 
-### Bước 2: Thêm cấu hình VirtualHost
+### Bước 3: Thêm cấu hình VirtualHost
 
 Thêm đoạn code sau vào cuối file:
 
@@ -148,7 +210,7 @@ Thêm đoạn code sau vào cuối file:
 </VirtualHost>
 ```
 
-### Bước 3: Chỉnh sửa file hosts
+### Bước 4: Chỉnh sửa file hosts
 
 ```bash
 sudo nano /etc/hosts
@@ -160,7 +222,7 @@ Thêm dòng sau:
 127.0.0.1   refactor.local
 ```
 
-### Bước 4: Khởi động lại Apache
+### Bước 5: Khởi động lại Apache
 
 ```bash
 sudo /Applications/XAMPP/xamppfiles/xampp restart
@@ -240,15 +302,11 @@ http://refactor.local
 
 ## 📝 Lưu ý quan trọng
 
-1. **Đường dẫn**: Luôn sử dụng đường dẫn tuyệt đối và dấu `/` (forward slash)
-2. **Quyền truy cập**: Trên Linux/MacOS, đảm bảo Apache có quyền đọc thư mục dự án
-3. **Backup**: Nên backup file cấu hình trước khi chỉnh sửa
-4. **Module vhosts**: Đảm bảo module VirtualHost đã được bật trong file `httpd.conf`
-
-```apache
-# Bỏ dấu # ở dòng này trong httpd.conf
-Include etc/extra/httpd-vhosts.conf
-```
+1. **Kích hoạt VirtualHost**: Bước đầu tiên và quan trọng nhất là phải bỏ comment dòng `Include etc/extra/httpd-vhosts.conf` trong file `httpd.conf`, nếu không VirtualHost sẽ không hoạt động
+2. **Đường dẫn**: Luôn sử dụng đường dẫn tuyệt đối và dấu `/` (forward slash)
+3. **Quyền truy cập**: Trên Linux/MacOS, đảm bảo Apache có quyền đọc thư mục dự án
+4. **Backup**: Nên backup file cấu hình trước khi chỉnh sửa
+5. **Xóa VirtualHost mặc định**: Trong file `httpd-vhosts.conf`, XAMPP thường có sẵn 2 VirtualHost mẫu (dummy-host.example.com), bạn nên comment hoặc xóa chúng đi để tránh conflict
 
 ---
 
