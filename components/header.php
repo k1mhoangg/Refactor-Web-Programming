@@ -3,23 +3,24 @@
 if (session_status() === PHP_SESSION_NONE)
   session_start();
 $current_user = $_SESSION['user'] ?? null;
-$current_page = basename($_SERVER['PHP_SELF']);
+$current_uri = $_SERVER['REQUEST_URI'];
+$current_path = parse_url($current_uri, PHP_URL_PATH);
 ?>
 <header class="header">
   <div class="container">
     <div class="logo flex items-center gap-2">
       <img src="/favicon.ico" alt="HomeDecor Logo" class="w-5 h-5 object-contain">
-      <span class=" font-bold text-yellow-400">HomeDecor</span>
+      <span class="font-bold text-yellow-400">HomeDecor</span>
     </div>
 
     <nav class="main-nav">
-      <a href="/" <?php echo ($current_page == 'index.php') ? 'class="active"' : ''; ?>>Trang chủ</a>
-      <a href="/about" <?php echo ($current_page == 'about.php') ? 'class="active"' : ''; ?>>Giới thiệu</a>
-      <a href="/services" <?php echo ($current_page == 'services.php') ? 'class="active"' : ''; ?>>Dịch vụ</a>
-      <a href="/pricing" <?php echo ($current_page == 'pricing.php') ? 'class="active"' : ''; ?>>Bảng giá</a>
-      <a href="/contact" <?php echo ($current_page == 'contact.php') ? 'class="active"' : ''; ?>>Liên hệ</a>
-      <a href="faq.php" <?php echo ($current_page == 'faq.php') ? 'class="active"' : ''; ?>>Hỏi đáp</a>
-      <a href="news.php" <?php echo ($current_page == 'news.php') ? 'class="active"' : ''; ?>>Tin tức</a>
+      <a href="/" class="<?php echo ($current_path === '/' || $current_path === '') ? 'active' : ''; ?>">Trang chủ</a>
+      <a href="/about" class="<?php echo ($current_path === '/about') ? 'active' : ''; ?>">Giới thiệu</a>
+      <a href="/services" class="<?php echo ($current_path === '/services') ? 'active' : ''; ?>">Dịch vụ</a>
+      <a href="/pricing" class="<?php echo ($current_path === '/pricing') ? 'active' : ''; ?>">Bảng giá</a>
+      <a href="/contact" class="<?php echo ($current_path === '/contact') ? 'active' : ''; ?>">Liên hệ</a>
+      <a href="/faq" class="<?php echo ($current_path === '/faq') ? 'active' : ''; ?>">Hỏi đáp</a>
+      <a href="/news" class="<?php echo ($current_path === '/news') ? 'active' : ''; ?>">Tin tức</a>
     </nav>
     <div class="others">
       <input type="text" placeholder="Tìm kiếm..." />
@@ -32,7 +33,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a href="/login"><i class="fa-regular fa-user text-white"></i></a>
         <a href="/register" class="ml-2 text-white">Đăng ký</a>
       <?php endif; ?>
-      <a href="/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
     </div>
   </div>
 </header>

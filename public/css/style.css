@@ -55,12 +55,16 @@ header .container {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
-.main-nav a:hover,
+.main-nav a:hover {
+  color: #d4a017;
+}
+
 .main-nav a.active {
   color: #d4a017;
+  font-weight: 600;
 }
 
 /* Ô tìm kiếm và icon */
