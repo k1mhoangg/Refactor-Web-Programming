@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS pages (
 
 -- Insert dữ liệu mẫu cho User (password là 'password123' đã hash)
 INSERT INTO users (username, email, password, full_name, phone, role) VALUES
-('admin', 'admin@homedecor.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', '0901234567', 'admin'),
+('admin', 'admin@homedecor.com', '$2y$10$sN8S4tajg1REncAWQuj7KuZZ1J.2Vl828TDnnG2fgYJHscTxNv7MC', 'Administrator', '0901234567', 'admin'),
 ('john_doe', 'john@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John Doe', '0912345678', 'customer'),
 ('jane_smith', 'jane@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Jane Smith', '0923456789', 'customer');
 
