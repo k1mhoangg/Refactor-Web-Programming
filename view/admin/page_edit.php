@@ -18,6 +18,8 @@ $content = $page['content'] ?? '';
 $meta = $page['meta'] ?? '';
 ?>
 
+<?php include __DIR__ . '/partial/navbar.php'; ?>
+
 <div class="page">
     <div class="container-xl">
         <div class="row mb-3">
@@ -31,7 +33,8 @@ $meta = $page['meta'] ?? '';
 
         <?php if (!empty($flash)): ?>
             <div class="<?php echo ($flash['type'] === 'success') ? 'alert alert-success' : 'alert alert-danger'; ?>">
-                <?php echo htmlspecialchars($flash['message']); ?></div>
+                <?php echo htmlspecialchars($flash['message']); ?>
+            </div>
         <?php endif; ?>
 
         <form method="POST" action="/admin/pages/save">

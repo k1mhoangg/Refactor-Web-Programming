@@ -21,6 +21,8 @@ $is_featured = !empty($product['is_featured']);
 $is_active = isset($product['is_active']) ? (bool) $product['is_active'] : true;
 ?>
 
+<?php include __DIR__ . '/partial/navbar.php'; ?>
+
 <div class="page">
     <div class="container-xl">
         <div class="row mb-3">

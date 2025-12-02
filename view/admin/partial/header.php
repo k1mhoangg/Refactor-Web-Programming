@@ -4,17 +4,85 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Bảng điều khiển quản trị</title>
-    <!-- External stylesheets -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- TABLER TEMPLATE INIT -->
-    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css" rel="stylesheet">
+    <title>HomeDecor Admin</title>
 
-    <!-- Tabler Icons (optional) -->
+    <!-- Tabler CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
+
+    <!-- Optional local styles -->
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 
-<body>
+<body class="antialiased">
+    <div class="page">
+
+        <!-- Sidebar -->
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+                    aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="/admin">
+                    <img src="/favicon.ico" class="navbar-brand-image" alt="logo"
+                        style="width:28px;height:28px;object-fit:contain">
+                    <span class="navbar-brand-text ms-2">HomeDecor Admin</span>
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="navbar-nav pt-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">
+                                <span class="nav-link-icon"><i class="ti ti-layout-dashboard"></i></span>
+                                <span class="nav-link-title">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/users">
+                                <span class="nav-link-icon"><i class="ti ti-users"></i></span>
+                                <span class="nav-link-title">Quản lý người dùng</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/contacts">
+                                <span class="nav-link-icon"><i class="ti ti-mail"></i></span>
+                                <span class="nav-link-title">Quản lý liên hệ</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/pages">
+                                <span class="nav-link-icon"><i class="ti ti-file-text"></i></span>
+                                <span class="nav-link-title">Quản lý Pages</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/products">
+                                <span class="nav-link-icon"><i class="ti ti-box"></i></span>
+                                <span class="nav-link-title">Quản lý sản phẩm</span>
+                            </a>
+                        </li>
+
+                        <!-- Placeholder menu group for future features -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <span class="nav-link-icon"><i class="ti ti-tool"></i></span>
+                                <span class="nav-link-title">Tính năng khác</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Báo cáo (coming soon)</a>
+                                <a class="dropdown-item" href="#">Cấu hình (coming soon)</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Page wrapper start -->
+        <div class="page-wrapper">
+            <!-- top navbar will be rendered in individual views (dashboard shows overview) -->

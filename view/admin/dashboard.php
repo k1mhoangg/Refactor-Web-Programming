@@ -8,38 +8,7 @@ if (session_status() === PHP_SESSION_NONE)
 $currentUser = $_SESSION['user']['username'] ?? 'Admin';
 ?>
 
-<!-- Admin top navbar (Tabler) -->
-<header class="navbar navbar-expand-md d-print-none">
-    <div class="container-xl">
-        <a class="navbar-brand" href="/admin">
-            <img src="/favicon.ico" alt="logo" style="width:20px;height:20px;object-fit:contain" class="me-2">
-            <span class="navbar-brand-name">HomeDecor Admin</span>
-        </a>
-
-        <div class="ms-auto d-flex align-items-center gap-2">
-            <form class="d-none d-md-flex" action="/admin/search" method="GET">
-                <div class="input-icon">
-                    <input type="text" name="q" class="form-control" placeholder="Tìm kiếm..." />
-                </div>
-            </form>
-
-            <div class="dropdown">
-                <a href="#" class="btn btn-outline-secondary d-flex align-items-center" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <span class="me-2"><?php echo htmlspecialchars($currentUser); ?></span>
-                    <span class="avatar avatar-sm"
-                        style="background:#666;color:#fff;border-radius:6px;padding:6px 8px;"><?php echo strtoupper(substr($currentUser, 0, 1)); ?></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="/profile">Hồ sơ</a>
-                    <a class="dropdown-item" href="/admin/settings">Cài đặt</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="/logout">Đăng xuất</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+<?php include __DIR__ . '/partial/navbar.php'; ?>
 
 <!-- Main dashboard content -->
 <main class="page-main">
@@ -48,13 +17,6 @@ $currentUser = $_SESSION['user']['username'] ?? 'Admin';
             <div class="col">
                 <h2 class="page-title">Bảng điều khiển</h2>
                 <div class="text-muted">Tổng quan hệ thống</div>
-            </div>
-            <div class="col-auto ms-auto d-print-none">
-                <div class="btn-list">
-                    <a href="/admin/users" class="btn btn-primary">Quản lý người dùng</a>
-                    <a href="/admin/contacts" class="btn btn-outline-secondary">Yêu cầu liên hệ</a>
-                    <a href="/admin/pages" class="btn btn-outline-secondary">Quản lý Pages</a>
-                </div>
             </div>
         </div>
 

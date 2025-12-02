@@ -3,12 +3,19 @@ namespace Controller\Admin;
 
 use Model\Page;
 use Core\Session;
+use Core\Pagination;
 
 class PagesController extends BaseAdminController
 {
     public function index()
     {
-        $pages = Page::all();
+        $perPage = 10;
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $total = Page::count();
+        $pagination = new Pagination($total, $perPage, $page);
+
+        $pages = Page::all($pagination->getLimit(), $pagination->getOffset());
+
         require_once BASE_PATH . 'view/admin/pages.php';
     }
 

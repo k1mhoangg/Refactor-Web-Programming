@@ -12,6 +12,8 @@ if (class_exists(\Core\Session::class)) {
 }
 ?>
 
+<?php include __DIR__ . '/partial/navbar.php'; ?>
+
 <div class="page">
     <div class="container-xl">
         <div class="row g-2 align-items-center mb-4">
@@ -26,7 +28,8 @@ if (class_exists(\Core\Session::class)) {
 
         <?php if (!empty($flash)): ?>
             <div class="<?php echo ($flash['type'] === 'success') ? 'alert alert-success' : 'alert alert-danger'; ?>">
-                <?php echo htmlspecialchars($flash['message']); ?></div>
+                <?php echo htmlspecialchars($flash['message']); ?>
+            </div>
         <?php endif; ?>
 
         <div class="card">
@@ -81,6 +84,8 @@ if (class_exists(\Core\Session::class)) {
                 </table>
             </div>
         </div>
+
+        <?php include __DIR__ . '/partial/pagination.php'; ?>
 
     </div>
 </div>

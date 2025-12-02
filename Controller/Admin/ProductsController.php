@@ -3,12 +3,19 @@ namespace Controller\Admin;
 
 use Model\Product;
 use Core\Session;
+use Core\Pagination;
 
 class ProductsController extends BaseAdminController
 {
     public function index()
     {
-        $products = Product::all();
+        $perPage = 10;
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $total = Product::count();
+        $pagination = new Pagination($total, $perPage, $page);
+
+        $products = Product::all($pagination->getLimit(), $pagination->getOffset());
+
         require_once BASE_PATH . 'view/admin/products.php';
     }
 

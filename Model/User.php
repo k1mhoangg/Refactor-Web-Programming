@@ -145,14 +145,29 @@ class User
     }
 
 
-    public static function all(): array
+    public static function all(int $limit = 0, int $offset = 0): array
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->query("SELECT id, username, password, role, display_name, email, avatar FROM users");
+        $sql = "SELECT id, username, password, role, display_name, email, avatar FROM users";
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            $stmt = $db->query($sql);
+        }
         $users = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $users[] = new self($row['username'], $row['password'], $row['role'], $row['id'], $row['display_name'] ?? null, $row['email'] ?? null, $row['avatar'] ?? null);
         }
         return $users;
+    }
+
+    public static function count(): int
+    {
+        $db = Database::getInstance()->getConnection();
+        return (int) $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
     }
 }

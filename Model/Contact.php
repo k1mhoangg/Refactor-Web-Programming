@@ -86,11 +86,26 @@ class Contact
     }
 
     // fetch all contacts (optionally order/limit)
-    public static function getAll($orderBy = 'created_at DESC')
+    public static function getAll($orderBy = 'created_at DESC', int $limit = 0, int $offset = 0)
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->query("SELECT * FROM contacts ORDER BY {$orderBy}");
+        $sql = "SELECT * FROM contacts ORDER BY {$orderBy}";
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            $stmt = $db->query($sql);
+        }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function count(): int
+    {
+        $db = Database::getInstance()->getConnection();
+        return (int) $db->query("SELECT COUNT(*) FROM contacts")->fetchColumn();
     }
 
     public static function findById(int $id)

@@ -43,11 +43,26 @@ class Page
         return $this->meta;
     }
 
-    public static function all()
+    public static function all(int $limit = 0, int $offset = 0): array
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->query("SELECT id, slug, title, content, meta, created_at, updated_at FROM pages ORDER BY updated_at DESC");
+        $sql = "SELECT id, slug, title, content, meta, created_at, updated_at FROM pages ORDER BY updated_at DESC";
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            $stmt = $db->query($sql);
+        }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function count(): int
+    {
+        $db = Database::getInstance()->getConnection();
+        return (int) $db->query("SELECT COUNT(*) FROM pages")->fetchColumn();
     }
 
     public static function findById(int $id)

@@ -4,6 +4,7 @@ namespace Controller\Admin;
 use Model\User;
 use Model\Contact;
 use Model\Page;
+use Core\Pagination;
 
 class AdminController extends BaseAdminController
 {
@@ -42,9 +43,12 @@ class AdminController extends BaseAdminController
 
     public function listUsers()
     {
-        // Logic to get users from the database
+        $perPage = 10;
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $total = User::count();
+        $pagination = new Pagination($total, $perPage, $page);
 
-        $users = User::all(); // Giả sử lấy từ model User
+        $users = User::all($pagination->getLimit(), $pagination->getOffset());
 
         require_once BASE_PATH . 'view/admin/users.php';
     }

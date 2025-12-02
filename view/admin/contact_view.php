@@ -18,6 +18,8 @@ if (empty($contact)) {
 }
 ?>
 
+<?php include __DIR__ . '/partial/navbar.php'; ?>
+
 <div class="page">
     <div class="container-xl">
         <div class="row">

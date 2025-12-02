@@ -3,12 +3,19 @@ namespace Controller\Admin;
 
 use Model\Contact;
 use Core\Session;
+use Core\Pagination;
 
 class ContactsController extends BaseAdminController
 {
     public function index()
     {
-        $contacts = Contact::getAll(); // model trả về mảng assoc
+        $perPage = 10;
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $total = Contact::count();
+        $pagination = new Pagination($total, $perPage, $page);
+
+        $contacts = Contact::getAll('created_at DESC', $pagination->getLimit(), $pagination->getOffset());
+
         require_once BASE_PATH . 'view/admin/contacts.php';
     }
 
