@@ -9,6 +9,9 @@ $router->addRoute('GET', '/', 'Frontend/HomeController');
 $router->addRoute('GET', '/contact', 'Frontend/ContactController');
 $router->addRoute('POST', '/contact', 'Frontend/ContactController@submit');
 
+$router->addRoute('GET', '/about', 'Frontend/AboutController');
+$router->addRoute('GET', '/faq', 'Frontend/FaqController');
+
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
 $router->addRoute('POST', '/profile', 'Frontend/UserController@update');
