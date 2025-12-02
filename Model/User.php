@@ -170,4 +170,13 @@ class User
         $db = Database::getInstance()->getConnection();
         return (int) $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
     }
+
+    public static function recent(int $limit = 5): array
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT id, username, email, role, created_at FROM users ORDER BY created_at DESC LIMIT :limit");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
