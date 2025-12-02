@@ -19,15 +19,12 @@ $router->addRoute('POST', '/login', 'Frontend/AuthController@login');
 // Logout requires authenticated user (customer or admin)
 $router->addRoute('GET', '/logout', 'Frontend/AuthController@logout');
 
-// Admin login logout
-// Admin auth (login) - only guest can access admin login
+// Admin login/logout
 $router->addRoute('GET', '/admin/login', 'Admin/AuthController@loginForm');
 $router->addRoute('POST', '/admin/login', 'Admin/AuthController@login');
-// Admin logout (admin only)
 $router->addRoute('GET', '/admin/logout', 'Admin/AuthController@logout');
 
-
-// Admin routes (expected namespace: Controller\Admin)
+// Admin routes (Controller\Admin)
 $router->addRoute('GET', '/admin', 'Admin/AdminController@index');
 $router->addRoute('GET', '/admin/users', 'Admin/AdminController@listUsers');
 
@@ -42,3 +39,9 @@ $router->addRoute('GET', '/admin/pages', 'Admin/PagesController@index');
 $router->addRoute('GET', '/admin/pages/edit', 'Admin/PagesController@edit');
 $router->addRoute('POST', '/admin/pages/save', 'Admin/PagesController@save');
 $router->addRoute('POST', '/admin/pages/delete', 'Admin/PagesController@delete');
+
+// Admin product management
+$router->addRoute('GET', '/admin/products', 'Admin/ProductsController@index');
+$router->addRoute('GET', '/admin/products/edit', 'Admin/ProductsController@edit'); // ?id=
+$router->addRoute('POST', '/admin/products/save', 'Admin/ProductsController@save');
+$router->addRoute('POST', '/admin/products/delete', 'Admin/ProductsController@delete');
