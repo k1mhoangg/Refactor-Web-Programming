@@ -18,7 +18,7 @@ if (class_exists(\Core\Session::class)) {
 
 <div class="page">
     <div class="container-xl">
-        <div class="row g-2 align-items-center mb-4">
+        <div class="row g-2 align-items-center page-header">
             <div class="col">
                 <h2 class="page-title">Quản lý người dùng</h2>
                 <div class="text-muted">Danh sách người dùng hệ thống</div>

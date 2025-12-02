@@ -16,7 +16,7 @@ if (class_exists(\Core\Session::class)) {
 
 <div class="page">
     <div class="container-xl">
-        <div class="row mb-3">
+        <div class="row mb-3 page-header">
             <div class="col">
                 <h2 class="page-title">Hồ sơ cá nhân</h2>
             </div>
@@ -28,7 +28,8 @@ if (class_exists(\Core\Session::class)) {
         <?php if (!empty($flash)): ?>
             <div
                 class="<?php echo ($flash['type'] === 'success') ? 'alert alert-success' : (($flash['type'] === 'error') ? 'alert alert-danger' : 'alert alert-info'); ?>">
-                <?php echo htmlspecialchars($flash['message']); ?></div>
+                <?php echo htmlspecialchars($flash['message']); ?>
+            </div>
         <?php endif; ?>
 
         <div class="row">

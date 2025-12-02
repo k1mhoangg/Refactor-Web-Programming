@@ -14,7 +14,7 @@ else {
 
 <div class="page">
     <div class="container-xl">
-        <div class="row g-2 align-items-center mb-4">
+        <div class="row g-2 align-items-center page-header">
             <div class="col">
                 <h2 class="page-title">Quản lý trang (Pages)</h2>
                 <div class="text-muted">Sửa nội dung giới thiệu, thông tin liên hệ, logo, ...</div>

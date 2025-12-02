@@ -25,7 +25,7 @@ $is_active = isset($product['is_active']) ? (bool) $product['is_active'] : true;
 
 <div class="page">
     <div class="container-xl">
-        <div class="row mb-3">
+        <div class="row mb-3 page-header">
             <div class="col">
                 <h2 class="page-title"><?php echo $id ? 'Chỉnh sửa sản phẩm' : 'Tạo sản phẩm mới'; ?></h2>
             </div>

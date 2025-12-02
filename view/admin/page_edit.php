@@ -22,7 +22,7 @@ $meta = $page['meta'] ?? '';
 
 <div class="page">
     <div class="container-xl">
-        <div class="row mb-3">
+        <div class="row page-header mb-3">
             <div class="col">
                 <h2 class="page-title"><?php echo $id ? 'Chỉnh sửa trang' : 'Tạo trang mới'; ?></h2>
             </div>

@@ -13,7 +13,7 @@ $currentUser = $_SESSION['user']['username'] ?? 'Admin';
 <!-- Main dashboard content -->
 <main class="page-main">
     <div class="container-xl">
-        <div class="row g-2 align-items-center mb-4">
+        <div class="row g-2 align-items-center page-header">
             <div class="col">
                 <h2 class="page-title">Bảng điều khiển</h2>
                 <div class="text-muted">Tổng quan hệ thống</div>
