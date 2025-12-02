@@ -7,7 +7,7 @@ if (!isset($currentUser)) {
 }
 ?>
 <!-- Admin top navbar (Tabler) -->
-<header class="navbar navbar-expand-md d-print-none">
+<header class="navbar navbar-expand-md d-print-none m-2">
     <div class="container-xl">
         <div class="ms-auto d-flex align-items-center gap-2">
             <form class="d-none d-md-flex" action="/admin/search" method="GET">
@@ -24,8 +24,7 @@ if (!isset($currentUser)) {
                         style="background:#666;color:#fff;border-radius:6px;padding:6px 8px;"><?php echo strtoupper(substr($currentUser, 0, 1)); ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="/profile">Hồ sơ</a>
-                    <a class="dropdown-item" href="/admin/settings">Cài đặt</a>
+                    <a class="dropdown-item" href="/admin/profile">Hồ sơ</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="/admin/logout">Đăng xuất</a>
                 </div>

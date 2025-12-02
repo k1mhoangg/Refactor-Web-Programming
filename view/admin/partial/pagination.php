@@ -8,10 +8,11 @@ $total = $pagination->getTotalPages();
 $baseUrl = strtok($_SERVER['REQUEST_URI'], '?'); // remove existing query string
 ?>
 
-<div class="card-footer d-flex align-items-center">
+<div class="card-footer d-flex align-items-center m-2">
     <p class="m-0 text-muted">Hiển thị <span><?php echo (($current - 1) * 10 + 1); ?></span> đến
         <span><?php echo min($current * 10, $pagination->getTotal()); ?></span> trong tổng số
-        <span><?php echo $pagination->getTotal(); ?></span> kết quả</p>
+        <span><?php echo $pagination->getTotal(); ?></span> kết quả
+    </p>
     <ul class="pagination m-0 ms-auto">
         <?php if ($current > 1): ?>
             <li class="page-item"><a class="page-link"

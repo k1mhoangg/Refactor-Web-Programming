@@ -132,11 +132,15 @@ class UserController
 
         $ok = User::updateById($id, ['password' => $new_pass]);
         if ($ok) {
-            $_SESSION['flash'] = ['type' => 'success', 'message' => 'Đổi mật khẩu thành công.'];
+            // Đổi mật khẩu thành công -> xóa session, yêu cầu đăng nhập lại
+            unset($_SESSION['user']);
+            $_SESSION['flash'] = ['type' => 'success', 'message' => 'Đổi mật khẩu thành công. Vui lòng đăng nhập lại.'];
+            header('Location: /login');
+            exit;
         } else {
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Đổi mật khẩu thất bại.'];
+            header('Location: /profile');
+            exit;
         }
-        header('Location: /profile');
-        exit;
     }
 }

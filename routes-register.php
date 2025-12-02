@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * FRONTEND ROUTES
+ * PLEASE ADD YOUR FRONTEND ROUTES HERE
+ */
 // Frontend routes (controller namespace: Controller\Frontend)
 $router->addRoute('GET', '/', 'Frontend/HomeController');
 $router->addRoute('GET', '/contact', 'Frontend/ContactController');
@@ -19,6 +23,12 @@ $router->addRoute('POST', '/login', 'Frontend/AuthController@login');
 // Logout requires authenticated user (customer or admin)
 $router->addRoute('GET', '/logout', 'Frontend/AuthController@logout');
 
+
+
+/**
+ * ADMIN ROUTES
+ * PLEASE ADD YOUR ADMIN ROUTES HERE
+ */
 // Admin login/logout
 $router->addRoute('GET', '/admin/login', 'Admin/AuthController@loginForm');
 $router->addRoute('POST', '/admin/login', 'Admin/AuthController@login');
@@ -45,3 +55,8 @@ $router->addRoute('GET', '/admin/products', 'Admin/ProductsController@index');
 $router->addRoute('GET', '/admin/products/edit', 'Admin/ProductsController@edit'); // ?id=
 $router->addRoute('POST', '/admin/products/save', 'Admin/ProductsController@save');
 $router->addRoute('POST', '/admin/products/delete', 'Admin/ProductsController@delete');
+
+// Admin profile
+$router->addRoute('GET', '/admin/profile', 'Admin/ProfileController@edit');
+$router->addRoute('POST', '/admin/profile', 'Admin/ProfileController@update');
+$router->addRoute('POST', '/admin/profile/password', 'Admin/ProfileController@changePassword');
