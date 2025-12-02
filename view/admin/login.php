@@ -13,7 +13,10 @@
     <div class="page page-center">
         <div class="container-tight py-4">
             <div class="text-center mb-4">
-                <a href="/"><img src="/favicon.ico" height="10" alt="HomeDecor"></a>
+                <a href="/" class="d-inline-flex align-items-center gap-2 text-decoration-none">
+                    <img src="/favicon.ico" height="48" width="48" alt="HomeDecor">
+                    <span class="fs-3 fw-bold text-dark">HomeDecor Admin</span>
+                </a>
             </div>
 
             <form class="card card-md" method="POST" action="/admin/login">
