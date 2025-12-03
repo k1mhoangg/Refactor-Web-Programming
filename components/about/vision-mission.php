@@ -1,9 +1,15 @@
+<?php
+$visionImage = $settings['vision_image'] ?? 'images/sample.jpg';
+$visionContent = $settings['vision_content'] ?? '';
+$missionContent = $settings['mission_content'] ?? '';
+$valuesContent = $settings['values_content'] ?? '';
+?>
 <section class="py-16 px-6 bg-gray-50">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-stretch gap-8">
 
     <!-- Hình ảnh -->
-    <div class="flex-1">
-      <img src="images/sample.jpg" alt="Vision Mission Values" class="w-full h-full object-cover rounded-lg">
+    <div class="flex-1 flex items-stretch">
+      <img src="<?php echo htmlspecialchars($visionImage); ?>" alt="Vision Mission Values" class="w-full h-full object-cover rounded-lg">
     </div>
 
     <!-- Nội dung -->
@@ -23,7 +29,7 @@
             <span class="block h-0.5 bg-gray-300 w-full mt-2"></span>
           </h4>
           <p class="text-sm md:text-base leading-relaxed">
-            Trở thành đơn vị tư vấn, cung cấp giải pháp Kiến Trúc – Nội Thất tổng thể hàng đầu trong tâm trí khách hàng ở phân khúc Biệt Thự, Dinh thự cao cấp. Phát triển, lan toả sản phẩm tới các Tỉnh thành lớn của cả nước và định hướng Xuất khẩu tới các nước phát triển trên Thế Giới.
+            <?php echo htmlspecialchars($visionContent); ?>
           </p>
         </div>
 
@@ -35,7 +41,7 @@
             <span class="block h-0.5 bg-gray-300 w-full mt-2"></span>
           </h4>
           <p class="text-sm md:text-base leading-relaxed">
-            Cung cấp giải pháp đồng bộ từ Thiết Kế – Thi Công tới phân Khúc Nôị Thất Cao Cấp đặc biệt Villa, dinh thự. Cung cấp các sản phẩm Nôị Thất độc bản, giới hạn tới các Công trình tiêu biểu. Biến ngôi nhà thành tổ ấm và không gian SỐNG ý nghĩa – NHÀ là nơi để gia đình sum vầy.
+            <?php echo htmlspecialchars($missionContent); ?>
           </p>
         </div>
 
@@ -47,7 +53,7 @@
             <span class="block h-0.5 bg-gray-300 w-full mt-2"></span>
           </h4>
           <p class="text-sm md:text-base leading-relaxed">
-            Lấy con người làm trung tâm để kiến tạo những sản phẩm khác biệt và hoàn hảo nhất cho việc phát triển Doanh nghiệp bền vững. Sự chân thành, tâm huyết, chỉn chu, đạo đức làm nghề và tính sáng tạo của tập thể HomeDecor làm thước đo để phục vụ khách hàng.
+            <?php echo htmlspecialchars($valuesContent); ?>
           </p>
         </div>
 

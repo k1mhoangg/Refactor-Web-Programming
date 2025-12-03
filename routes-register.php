@@ -11,6 +11,7 @@ $router->addRoute('POST', '/contact', 'Frontend/ContactController@submit');
 
 $router->addRoute('GET', '/about', 'Frontend/AboutController');
 $router->addRoute('GET', '/faq', 'Frontend/FaqController');
+$router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
 
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
@@ -63,3 +64,4 @@ $router->addRoute('POST', '/admin/products/delete', 'Admin/ProductsController@de
 $router->addRoute('GET', '/admin/profile', 'Admin/ProfileController@edit');
 $router->addRoute('POST', '/admin/profile', 'Admin/ProfileController@update');
 $router->addRoute('POST', '/admin/profile/password', 'Admin/ProfileController@changePassword');
+
