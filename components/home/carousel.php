@@ -14,7 +14,7 @@
                 </div>
                 <!-- Slide 2 -->
                 <div class="carousel-slide flex-none w-full relative">
-                    <img src="images/sample.jpg" alt="Phòng ngủ đẹp"
+                    <img src="images/phong_ngu1.jpg" alt="Phòng ngủ đẹp"
                         class="w-full h-56 sm:h-72 md:h-96 lg:h-[112] object-cover rounded-lg shadow-md">
                     <div class="absolute left-4 bottom-6 bg-black bg-opacity-40 text-white px-3 py-2 rounded z-10">
                         <h3 class="text-lg font-semibold">Phòng ngủ ấm cúng</h3>
