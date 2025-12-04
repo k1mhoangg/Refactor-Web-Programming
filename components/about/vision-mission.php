@@ -3,6 +3,11 @@ $visionImage = $settings['vision_image'] ?? 'images/sample.jpg';
 $visionContent = $settings['vision_content'] ?? '';
 $missionContent = $settings['mission_content'] ?? '';
 $valuesContent = $settings['values_content'] ?? '';
+
+// Tách nội dung thành các đoạn văn dựa trên dấu xuống dòng
+$visionParagraphs = !empty($visionContent) ? explode("\n", trim($visionContent)) : [];
+$missionParagraphs = !empty($missionContent) ? explode("\n", trim($missionContent)) : [];
+$valuesParagraphs = !empty($valuesContent) ? explode("\n", trim($valuesContent)) : [];
 ?>
 <section class="py-16 px-6 bg-gray-50">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-stretch gap-8">
@@ -28,9 +33,17 @@ $valuesContent = $settings['values_content'] ?? '';
             TẦM NHÌN
             <span class="block h-0.5 bg-gray-300 w-full mt-2"></span>
           </h4>
-          <p class="text-sm md:text-base leading-relaxed">
-            <?php echo htmlspecialchars($visionContent); ?>
-          </p>
+          <div class="text-sm md:text-base leading-relaxed space-y-2">
+            <?php if (!empty($visionParagraphs)): ?>
+              <?php foreach ($visionParagraphs as $paragraph): ?>
+                <?php if (trim($paragraph)): ?>
+                  <p><?php echo htmlspecialchars(trim($paragraph)); ?></p>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <p><?php echo htmlspecialchars($visionContent); ?></p>
+            <?php endif; ?>
+          </div>
         </div>
 
         <!-- Card Sứ mệnh -->
@@ -40,9 +53,17 @@ $valuesContent = $settings['values_content'] ?? '';
             SỨ MỆNH
             <span class="block h-0.5 bg-gray-300 w-full mt-2"></span>
           </h4>
-          <p class="text-sm md:text-base leading-relaxed">
-            <?php echo htmlspecialchars($missionContent); ?>
-          </p>
+          <div class="text-sm md:text-base leading-relaxed space-y-2">
+            <?php if (!empty($missionParagraphs)): ?>
+              <?php foreach ($missionParagraphs as $paragraph): ?>
+                <?php if (trim($paragraph)): ?>
+                  <p><?php echo htmlspecialchars(trim($paragraph)); ?></p>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <p><?php echo htmlspecialchars($missionContent); ?></p>
+            <?php endif; ?>
+          </div>
         </div>
 
         <!-- Card Giá trị cốt lõi -->
@@ -52,9 +73,17 @@ $valuesContent = $settings['values_content'] ?? '';
             GIÁ TRỊ CỐT LÕI
             <span class="block h-0.5 bg-gray-300 w-full mt-2"></span>
           </h4>
-          <p class="text-sm md:text-base leading-relaxed">
-            <?php echo htmlspecialchars($valuesContent); ?>
-          </p>
+          <div class="text-sm md:text-base leading-relaxed space-y-2">
+            <?php if (!empty($valuesParagraphs)): ?>
+              <?php foreach ($valuesParagraphs as $paragraph): ?>
+                <?php if (trim($paragraph)): ?>
+                  <p><?php echo htmlspecialchars(trim($paragraph)); ?></p>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <p><?php echo htmlspecialchars($valuesContent); ?></p>
+            <?php endif; ?>
+          </div>
         </div>
 
       </div>
