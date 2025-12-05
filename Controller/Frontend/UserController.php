@@ -13,6 +13,7 @@ class UserController
             session_start();
         $current = $_SESSION['user'] ?? null;
         if (!$current) {
+            storePreviousUrl(); // Store current URL before redirecting to login
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Vui lòng đăng nhập để truy cập trang này.'];
             header('Location: /login');
             exit;
@@ -29,6 +30,7 @@ class UserController
             session_start();
         $current = $_SESSION['user'] ?? null;
         if (!$current) {
+            storePreviousUrl(); // Store current URL before redirecting to login
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Vui lòng đăng nhập.'];
             header('Location: /login');
             exit;
@@ -102,6 +104,7 @@ class UserController
             session_start();
         $current = $_SESSION['user'] ?? null;
         if (!$current) {
+            storePreviousUrl(); // Store current URL before redirecting to login
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Vui lòng đăng nhập.'];
             header('Location: /login');
             exit;

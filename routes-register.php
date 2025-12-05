@@ -9,6 +9,10 @@ $router->addRoute('GET', '/', 'Frontend/HomeController');
 $router->addRoute('GET', '/contact', 'Frontend/ContactController');
 $router->addRoute('POST', '/contact', 'Frontend/ContactController@submit');
 
+$router->addRoute('GET', '/about', 'Frontend/AboutController');
+$router->addRoute('GET', '/faq', 'Frontend/FaqController');
+$router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
+
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
 $router->addRoute('POST', '/profile', 'Frontend/UserController@update');
@@ -60,3 +64,15 @@ $router->addRoute('POST', '/admin/products/delete', 'Admin/ProductsController@de
 $router->addRoute('GET', '/admin/profile', 'Admin/ProfileController@edit');
 $router->addRoute('POST', '/admin/profile', 'Admin/ProfileController@update');
 $router->addRoute('POST', '/admin/profile/password', 'Admin/ProfileController@changePassword');
+
+// Admin about management
+$router->addRoute('GET', '/admin/about', 'Admin/AboutController@index');
+$router->addRoute('GET', '/admin/about/decor/create', 'Admin/AboutController@createDecor');
+$router->addRoute('GET', '/admin/about/decor/edit', 'Admin/AboutController@editDecor');
+$router->addRoute('GET', '/admin/about/advantages/create', 'Admin/AboutController@createAdvantage');
+$router->addRoute('GET', '/admin/about/advantages/edit', 'Admin/AboutController@editAdvantage');
+$router->addRoute('POST', '/admin/about/save-settings', 'Admin/AboutController@saveSettings');
+$router->addRoute('POST', '/admin/about/save-decor-image', 'Admin/AboutController@saveDecorImage');
+$router->addRoute('POST', '/admin/about/delete-decor-image', 'Admin/AboutController@deleteDecorImage');
+$router->addRoute('POST', '/admin/about/save-advantage', 'Admin/AboutController@saveAdvantage');
+$router->addRoute('POST', '/admin/about/delete-advantage', 'Admin/AboutController@deleteAdvantage');
