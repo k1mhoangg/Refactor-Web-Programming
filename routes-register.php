@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -72,6 +73,7 @@ $router->addRoute('GET', '/admin/profile', 'Admin/ProfileController@edit');
 $router->addRoute('POST', '/admin/profile', 'Admin/ProfileController@update');
 $router->addRoute('POST', '/admin/profile/password', 'Admin/ProfileController@changePassword');
 
+
 // Admin about management
 $router->addRoute('GET', '/admin/about', 'Admin/AboutController@index');
 $router->addRoute('GET', '/admin/about/decor/create', 'Admin/AboutController@createDecor');
@@ -83,3 +85,10 @@ $router->addRoute('POST', '/admin/about/save-decor-image', 'Admin/AboutControlle
 $router->addRoute('POST', '/admin/about/delete-decor-image', 'Admin/AboutController@deleteDecorImage');
 $router->addRoute('POST', '/admin/about/save-advantage', 'Admin/AboutController@saveAdvantage');
 $router->addRoute('POST', '/admin/about/delete-advantage', 'Admin/AboutController@deleteAdvantage');
+
+// Admin order management
+$router->addRoute('GET', '/admin/orders', 'Admin/OrdersController@listOrders');
+$router->addRoute('GET', '/admin/orders/view', 'Admin/OrdersController@viewOrder');
+$router->addRoute('POST', '/admin/orders/confirm', 'Admin/OrdersController@confirmOrder');
+$router->addRoute('POST', '/admin/orders/delete', 'Admin/OrdersController@deleteOrder');
+

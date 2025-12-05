@@ -52,7 +52,7 @@
                 </tfoot>
             </table>
             <div class="flex justify-end mt-6">
-                <button type="submit" class="buy-btn px-6 py-2">Thanh toán</button>
+                <button type="submit" class="buy-btn px-6 py-2">Xác Nhận</button>
             </div>
         </form>
     </div>

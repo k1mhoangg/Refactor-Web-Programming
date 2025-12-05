@@ -71,6 +71,7 @@
                             </a>
                         </li>
 
+
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/about">
                                 <span class="nav-link-icon"><i class="ti ti-info-circle"></i></span>
@@ -82,6 +83,13 @@
                             <a class="nav-link" href="/admin/products">
                                 <span class="nav-link-icon"><i class="ti ti-box"></i></span>
                                 <span class="nav-link-title">Quản lý sản phẩm</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/orders">
+                                <span class="nav-link-icon"><i class="ti ti-receipt"></i></span>
+                                <span class="nav-link-title">Quản lý đơn hàng</span>
                             </a>
                         </li>
 
