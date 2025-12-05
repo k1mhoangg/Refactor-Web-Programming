@@ -5,10 +5,7 @@ use Core\Database;
 use PDO;
 
 class Cart
-
-
 {
-        // Tạo đơn hàng từ giỏ hàng và xóa giỏ hàng
     public static function createOrderFromCart($cartId, $userId)
     {
         $db = Database::getInstance()->getConnection();
