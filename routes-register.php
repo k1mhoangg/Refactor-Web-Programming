@@ -110,3 +110,15 @@ $router->addRoute('GET', '/admin/products/search', 'Admin/ProductsController@sea
 // Admin contact settings management
 $router->addRoute('GET', '/admin/contact-settings', 'Admin/ContactSettingsController@index');
 $router->addRoute('POST', '/admin/contact-settings/save', 'Admin/ContactSettingsController@save');
+
+// Admin home settings management
+$router->addRoute('GET', '/admin/home-settings', 'Admin/HomeSettingsController@index');
+$router->addRoute('POST', '/admin/home-settings/save', 'Admin/HomeSettingsController@saveSettings');
+$router->addRoute('GET', '/admin/home-settings/slides/create', 'Admin/HomeSettingsController@createSlide');
+$router->addRoute('GET', '/admin/home-settings/slides/edit', 'Admin/HomeSettingsController@editSlide');
+$router->addRoute('POST', '/admin/home-settings/slides/save', 'Admin/HomeSettingsController@saveSlide');
+$router->addRoute('POST', '/admin/home-settings/slides/delete', 'Admin/HomeSettingsController@deleteSlide');
+$router->addRoute('GET', '/admin/home-settings/banners/create', 'Admin/HomeSettingsController@createBanner');
+$router->addRoute('GET', '/admin/home-settings/banners/edit', 'Admin/HomeSettingsController@editBanner');
+$router->addRoute('POST', '/admin/home-settings/banners/save', 'Admin/HomeSettingsController@saveBanner');
+$router->addRoute('POST', '/admin/home-settings/banners/delete', 'Admin/HomeSettingsController@deleteBanner');
