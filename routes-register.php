@@ -76,3 +76,11 @@ $router->addRoute('POST', '/admin/about/save-decor-image', 'Admin/AboutControlle
 $router->addRoute('POST', '/admin/about/delete-decor-image', 'Admin/AboutController@deleteDecorImage');
 $router->addRoute('POST', '/admin/about/save-advantage', 'Admin/AboutController@saveAdvantage');
 $router->addRoute('POST', '/admin/about/delete-advantage', 'Admin/AboutController@deleteAdvantage');
+
+// Admin FAQ management
+$router->addRoute('GET', '/admin/faqs', 'Admin/FaqsController@index');
+$router->addRoute('GET', '/admin/faqs/edit', 'Admin/FaqsController@edit');
+$router->addRoute('POST', '/admin/faqs/save', 'Admin/FaqsController@save');
+$router->addRoute('POST', '/admin/faqs/publish', 'Admin/FaqsController@publish');
+$router->addRoute('POST', '/admin/faqs/unpublish', 'Admin/FaqsController@unpublish');
+$router->addRoute('POST', '/admin/faqs/delete', 'Admin/FaqsController@delete');
