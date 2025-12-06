@@ -87,9 +87,10 @@ class HomeSettings
     public static function createSlide(array $data): int
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("INSERT INTO home_slides (image_url, title, subtitle, button_text, button_link, display_order, is_active) 
-                              VALUES (:image_url, :title, :subtitle, :button_text, :button_link, :display_order, :is_active)");
+        $stmt = $db->prepare("INSERT INTO home_slides (product_id, image_url, title, subtitle, button_text, button_link, display_order, is_active) 
+                              VALUES (:product_id, :image_url, :title, :subtitle, :button_text, :button_link, :display_order, :is_active)");
         $stmt->execute([
+            ':product_id' => $data['product_id'] ?? null,
             ':image_url' => $data['image_url'],
             ':title' => $data['title'] ?? '',
             ':subtitle' => $data['subtitle'] ?? '',
@@ -104,7 +105,7 @@ class HomeSettings
     public static function updateSlide(int $id, array $data): bool
     {
         $db = Database::getInstance()->getConnection();
-        $allowed = ['image_url', 'title', 'subtitle', 'button_text', 'button_link', 'display_order', 'is_active'];
+        $allowed = ['product_id', 'image_url', 'title', 'subtitle', 'button_text', 'button_link', 'display_order', 'is_active'];
         $sets = [];
         $params = [':id' => $id];
 
@@ -152,9 +153,10 @@ class HomeSettings
     public static function createBanner(array $data): int
     {
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("INSERT INTO home_banners (image_url, title, link, display_order, is_active) 
-                              VALUES (:image_url, :title, :link, :display_order, :is_active)");
+        $stmt = $db->prepare("INSERT INTO home_banners (product_id, image_url, title, link, display_order, is_active) 
+                              VALUES (:product_id, :image_url, :title, :link, :display_order, :is_active)");
         $stmt->execute([
+            ':product_id' => $data['product_id'] ?? null,
             ':image_url' => $data['image_url'],
             ':title' => $data['title'] ?? '',
             ':link' => $data['link'] ?? '/',
@@ -167,7 +169,7 @@ class HomeSettings
     public static function updateBanner(int $id, array $data): bool
     {
         $db = Database::getInstance()->getConnection();
-        $allowed = ['image_url', 'title', 'link', 'display_order', 'is_active'];
+        $allowed = ['product_id', 'image_url', 'title', 'link', 'display_order', 'is_active'];
         $sets = [];
         $params = [':id' => $id];
 

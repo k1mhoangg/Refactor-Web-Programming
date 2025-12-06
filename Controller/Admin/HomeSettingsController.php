@@ -101,6 +101,7 @@ class HomeSettingsController extends BaseAdminController
     {
         $slide = null;
         $isEdit = false;
+        $allProducts = Product::all(0, 0);
         require_once BASE_PATH . 'view/admin/home_slide_edit.php';
     }
 
@@ -114,13 +115,32 @@ class HomeSettingsController extends BaseAdminController
             exit;
         }
         $isEdit = true;
+        $allProducts = Product::all(0, 0);
         require_once BASE_PATH . 'view/admin/home_slide_edit.php';
     }
 
     public function saveSlide()
     {
         $id = isset($_POST['id']) ? (int) $_POST['id'] : 0;
+        $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
+
+        if (!$productId) {
+            Session::setFlash('error', 'Vui lòng chọn sản phẩm để lấy ảnh.');
+            header('Location: /admin/home-settings/slides/' . ($id ? 'edit?id=' . $id : 'create'));
+            exit;
+        }
+
+        // Lấy ảnh từ sản phẩm
+        $product = Product::findById($productId);
+        if (!$product) {
+            Session::setFlash('error', 'Sản phẩm không tồn tại.');
+            header('Location: /admin/home-settings/slides/' . ($id ? 'edit?id=' . $id : 'create'));
+            exit;
+        }
+
         $data = [
+            'product_id' => $productId,
+            'image_url' => $product['image_url'],
             'title' => trim($_POST['title'] ?? ''),
             'subtitle' => trim($_POST['subtitle'] ?? ''),
             'button_text' => trim($_POST['button_text'] ?? ''),
@@ -129,36 +149,10 @@ class HomeSettingsController extends BaseAdminController
             'is_active' => isset($_POST['is_active']) ? 1 : 0
         ];
 
-        // Handle image upload
-        if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $file = $_FILES['image'];
-            $allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            if (in_array($file['type'], $allowed)) {
-                $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-                $filename = 'slide_' . time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-                $uploadDir = BASE_PATH . 'public/uploads/home/';
-                if (!is_dir($uploadDir))
-                    mkdir($uploadDir, 0755, true);
-                $target = $uploadDir . $filename;
-                if (move_uploaded_file($file['tmp_name'], $target)) {
-                    $data['image_url'] = '/uploads/home/' . $filename;
-                }
-            }
-        } elseif ($id) {
-            $existing = HomeSettings::getSlideById($id);
-            if ($existing)
-                $data['image_url'] = $existing['image_url'];
-        }
-
         if ($id) {
             $ok = HomeSettings::updateSlide($id, $data);
             Session::setFlash($ok ? 'success' : 'error', $ok ? 'Cập nhật slide thành công.' : 'Cập nhật thất bại.');
         } else {
-            if (empty($data['image_url'])) {
-                Session::setFlash('error', 'Vui lòng chọn ảnh cho slide.');
-                header('Location: /admin/home-settings/slides/create');
-                exit;
-            }
             $newId = HomeSettings::createSlide($data);
             Session::setFlash($newId ? 'success' : 'error', $newId ? 'Thêm slide thành công.' : 'Thêm thất bại.');
         }
@@ -184,6 +178,7 @@ class HomeSettingsController extends BaseAdminController
     {
         $banner = null;
         $isEdit = false;
+        $allProducts = Product::all(0, 0);
         require_once BASE_PATH . 'view/admin/home_banner_edit.php';
     }
 
@@ -197,49 +192,42 @@ class HomeSettingsController extends BaseAdminController
             exit;
         }
         $isEdit = true;
+        $allProducts = Product::all(0, 0);
         require_once BASE_PATH . 'view/admin/home_banner_edit.php';
     }
 
     public function saveBanner()
     {
         $id = isset($_POST['id']) ? (int) $_POST['id'] : 0;
+        $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
+
+        if (!$productId) {
+            Session::setFlash('error', 'Vui lòng chọn sản phẩm để lấy ảnh.');
+            header('Location: /admin/home-settings/banners/' . ($id ? 'edit?id=' . $id : 'create'));
+            exit;
+        }
+
+        // Lấy ảnh từ sản phẩm
+        $product = Product::findById($productId);
+        if (!$product) {
+            Session::setFlash('error', 'Sản phẩm không tồn tại.');
+            header('Location: /admin/home-settings/banners/' . ($id ? 'edit?id=' . $id : 'create'));
+            exit;
+        }
+
         $data = [
+            'product_id' => $productId,
+            'image_url' => $product['image_url'],
             'title' => trim($_POST['title'] ?? ''),
             'link' => trim($_POST['link'] ?? '/'),
             'display_order' => (int) ($_POST['display_order'] ?? 0),
             'is_active' => isset($_POST['is_active']) ? 1 : 0
         ];
 
-        // Handle image upload
-        if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $file = $_FILES['image'];
-            $allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            if (in_array($file['type'], $allowed)) {
-                $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-                $filename = 'banner_' . time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-                $uploadDir = BASE_PATH . 'public/uploads/home/';
-                if (!is_dir($uploadDir))
-                    mkdir($uploadDir, 0755, true);
-                $target = $uploadDir . $filename;
-                if (move_uploaded_file($file['tmp_name'], $target)) {
-                    $data['image_url'] = '/uploads/home/' . $filename;
-                }
-            }
-        } elseif ($id) {
-            $existing = HomeSettings::getBannerById($id);
-            if ($existing)
-                $data['image_url'] = $existing['image_url'];
-        }
-
         if ($id) {
             $ok = HomeSettings::updateBanner($id, $data);
             Session::setFlash($ok ? 'success' : 'error', $ok ? 'Cập nhật banner thành công.' : 'Cập nhật thất bại.');
         } else {
-            if (empty($data['image_url'])) {
-                Session::setFlash('error', 'Vui lòng chọn ảnh cho banner.');
-                header('Location: /admin/home-settings/banners/create');
-                exit;
-            }
             $newId = HomeSettings::createBanner($data);
             Session::setFlash($newId ? 'success' : 'error', $newId ? 'Thêm banner thành công.' : 'Thêm thất bại.');
         }

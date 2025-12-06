@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS home_settings (
 -- Bảng slides carousel
 CREATE TABLE IF NOT EXISTS home_slides (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NULL,
     image_url VARCHAR(500) NOT NULL,
     title VARCHAR(255) NULL,
     subtitle VARCHAR(255) NULL,
@@ -55,18 +56,21 @@ CREATE TABLE IF NOT EXISTS home_slides (
     display_order INT DEFAULT 0,
     is_active TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Bảng banner panels
 CREATE TABLE IF NOT EXISTS home_banners (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NULL,
     image_url VARCHAR(500) NOT NULL,
     title VARCHAR(255) NULL,
     link VARCHAR(255) DEFAULT '/',
     display_order INT DEFAULT 0,
     is_active TINYINT(1) DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Insert default settings if not exists
