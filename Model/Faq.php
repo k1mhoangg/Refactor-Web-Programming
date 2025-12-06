@@ -67,7 +67,7 @@ class Faq
     public function save()
     {
         $db = Database::getInstance()->getConnection();
-        
+
         // Sanitization
         $this->question = sanitizeInput($this->question);
         $this->answer = $this->answer ? sanitizeInput($this->answer) : null;
@@ -85,34 +85,34 @@ class Faq
     public static function getAll($search = '', int $limit = 0, int $offset = 0)
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT * FROM faqs WHERE is_published = 1";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
         }
-        
+
         $sql .= " ORDER BY created_at DESC";
-        
+
         if ($limit > 0) {
             $sql .= " LIMIT :limit OFFSET :offset";
         }
-        
+
         $stmt = $db->prepare($sql);
-        
+
         if (!empty($search)) {
             $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
         }
-        
+
         if ($limit > 0) {
             $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         $faqs = [];
         foreach ($rows as $row) {
             $faqs[] = new self(
@@ -125,7 +125,7 @@ class Faq
                 $row['updated_at'] ?? null
             );
         }
-        
+
         return $faqs;
     }
 
@@ -133,9 +133,9 @@ class Faq
     public static function count($search = ''): int
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT COUNT(*) FROM faqs WHERE is_published = 1";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
@@ -145,7 +145,7 @@ class Faq
         } else {
             $stmt = $db->query($sql);
         }
-        
+
         return (int) $stmt->fetchColumn();
     }
 
@@ -153,35 +153,35 @@ class Faq
     public static function getByUserId(int $user_id, $search = '', int $limit = 0, int $offset = 0)
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT * FROM faqs WHERE user_id = :user_id";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
         }
-        
+
         $sql .= " ORDER BY created_at DESC";
-        
+
         if ($limit > 0) {
             $sql .= " LIMIT :limit OFFSET :offset";
         }
-        
+
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        
+
         if (!empty($search)) {
             $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
         }
-        
+
         if ($limit > 0) {
             $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         $faqs = [];
         foreach ($rows as $row) {
             $faqs[] = new self(
@@ -194,7 +194,7 @@ class Faq
                 $row['updated_at'] ?? null
             );
         }
-        
+
         return $faqs;
     }
 
@@ -202,9 +202,9 @@ class Faq
     public static function countByUserId(int $user_id, $search = ''): int
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT COUNT(*) FROM faqs WHERE user_id = :user_id";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
@@ -217,7 +217,7 @@ class Faq
             $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
             $stmt->execute();
         }
-        
+
         return (int) $stmt->fetchColumn();
     }
 
@@ -227,11 +227,11 @@ class Faq
         $stmt = $db->prepare("SELECT * FROM faqs WHERE id = :id LIMIT 1");
         $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if (!$row) {
             return null;
         }
-        
+
         return new self(
             $row['question'],
             $row['answer'],
@@ -248,34 +248,34 @@ class Faq
     public static function getPublished($search = '', int $limit = 0, int $offset = 0)
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT * FROM faqs WHERE is_published = 1 AND answer IS NOT NULL AND answer != ''";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
         }
-        
+
         $sql .= " ORDER BY updated_at DESC, created_at DESC";
-        
+
         if ($limit > 0) {
             $sql .= " LIMIT :limit OFFSET :offset";
         }
-        
+
         $stmt = $db->prepare($sql);
-        
+
         if (!empty($search)) {
             $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
         }
-        
+
         if ($limit > 0) {
             $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         $faqs = [];
         foreach ($rows as $row) {
             $faqs[] = new self(
@@ -288,7 +288,7 @@ class Faq
                 $row['updated_at'] ?? null
             );
         }
-        
+
         return $faqs;
     }
 
@@ -296,9 +296,9 @@ class Faq
     public static function countPublished($search = ''): int
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT COUNT(*) FROM faqs WHERE is_published = 1 AND answer IS NOT NULL AND answer != ''";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
@@ -308,7 +308,7 @@ class Faq
         } else {
             $stmt = $db->query($sql);
         }
-        
+
         return (int) $stmt->fetchColumn();
     }
 
@@ -316,34 +316,34 @@ class Faq
     public static function getUnpublished($search = '', int $limit = 0, int $offset = 0)
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT * FROM faqs WHERE is_published = 0 AND answer IS NOT NULL AND answer != ''";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
         }
-        
+
         $sql .= " ORDER BY updated_at DESC, created_at DESC";
-        
+
         if ($limit > 0) {
             $sql .= " LIMIT :limit OFFSET :offset";
         }
-        
+
         $stmt = $db->prepare($sql);
-        
+
         if (!empty($search)) {
             $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
         }
-        
+
         if ($limit > 0) {
             $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         $faqs = [];
         foreach ($rows as $row) {
             $faqs[] = new self(
@@ -356,7 +356,7 @@ class Faq
                 $row['updated_at'] ?? null
             );
         }
-        
+
         return $faqs;
     }
 
@@ -364,9 +364,9 @@ class Faq
     public static function countUnpublished($search = ''): int
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT COUNT(*) FROM faqs WHERE is_published = 0 AND answer IS NOT NULL AND answer != ''";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
@@ -376,7 +376,7 @@ class Faq
         } else {
             $stmt = $db->query($sql);
         }
-        
+
         return (int) $stmt->fetchColumn();
     }
 
@@ -384,34 +384,34 @@ class Faq
     public static function getUnanswered($search = '', int $limit = 0, int $offset = 0)
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT * FROM faqs WHERE answer IS NULL OR answer = ''";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
         }
-        
+
         $sql .= " ORDER BY created_at DESC";
-        
+
         if ($limit > 0) {
             $sql .= " LIMIT :limit OFFSET :offset";
         }
-        
+
         $stmt = $db->prepare($sql);
-        
+
         if (!empty($search)) {
             $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
         }
-        
+
         if ($limit > 0) {
             $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         $faqs = [];
         foreach ($rows as $row) {
             $faqs[] = new self(
@@ -424,7 +424,7 @@ class Faq
                 $row['updated_at'] ?? null
             );
         }
-        
+
         return $faqs;
     }
 
@@ -432,9 +432,9 @@ class Faq
     public static function countUnanswered($search = ''): int
     {
         $db = Database::getInstance()->getConnection();
-        
+
         $sql = "SELECT COUNT(*) FROM faqs WHERE answer IS NULL OR answer = ''";
-        
+
         if (!empty($search)) {
             $searchTerm = '%' . $search . '%';
             $sql .= " AND question LIKE :search";
@@ -444,7 +444,7 @@ class Faq
         } else {
             $stmt = $db->query($sql);
         }
-        
+
         return (int) $stmt->fetchColumn();
     }
 
@@ -452,7 +452,7 @@ class Faq
     public function update()
     {
         $db = Database::getInstance()->getConnection();
-        
+
         // Sanitization
         $question = sanitizeInput($this->question);
         $answer = $this->answer ? sanitizeInput($this->answer) : null;
@@ -470,7 +470,7 @@ class Faq
     public static function updateById(int $id, string $question, string $answer, int $is_published): bool
     {
         $db = Database::getInstance()->getConnection();
-        
+
         // Sanitization
         $question = sanitizeInput($question);
         $answer = !empty($answer) ? sanitizeInput($answer) : null;

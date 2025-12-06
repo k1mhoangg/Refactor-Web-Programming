@@ -126,6 +126,13 @@ class Contact
         return $stmt->execute([':status' => $status, ':id' => $id]);
     }
 
+    public static function markReplied(int $id): bool
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("UPDATE contacts SET status = 'replied', replied_at = NOW() WHERE id = :id");
+        return $stmt->execute([':id' => $id]);
+    }
+
     public static function deleteById(int $id): bool
     {
         $db = Database::getInstance()->getConnection();
