@@ -100,7 +100,6 @@ $router->addRoute('GET', '/admin/orders', 'Admin/OrdersController@listOrders');
 $router->addRoute('GET', '/admin/orders/view', 'Admin/OrdersController@viewOrder');
 $router->addRoute('POST', '/admin/orders/confirm', 'Admin/OrdersController@confirmOrder');
 $router->addRoute('POST', '/admin/orders/delete', 'Admin/OrdersController@deleteOrder');
-
 $router->addRoute('GET', '/admin/products/search', 'Admin/ProductsController@search');
 
 
