@@ -1,0 +1,11 @@
+{
+    "name": "webprogramming/homedecor",
+    "description": "A project of home shop",
+    "type": "project",
+    "require": {
+        "php": ">=7",
+        "phpmailer/phpmailer": "^6.5"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

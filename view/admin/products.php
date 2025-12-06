@@ -54,7 +54,7 @@ if (class_exists(\Core\Session::class)) {
                                     <td><?php echo htmlspecialchars($p['id']); ?></td>
                                     <td style="width:80px">
                                         <?php if (!empty($p['image_url'])): ?>
-                                            <img src="<?php echo htmlspecialchars($p['image_url']); ?>" alt=""
+                                            <img src="<?php echo '../' . htmlspecialchars($p['image_url']); ?>" alt=""
                                                 style="width:64px;height:64px;object-fit:cover;border-radius:6px">
                                         <?php else: ?>
                                             <div class="text-muted">No image</div>

@@ -21,6 +21,10 @@ $router->addRoute('GET', '/faq', 'Frontend/FaqController');
 $router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
 $router->addRoute('GET', '/search', 'Frontend/ProductController@search');
 
+$router->addRoute('GET', '/about', 'Frontend/AboutController');
+$router->addRoute('GET', '/faq', 'Frontend/FaqController');
+$router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
+
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
 $router->addRoute('POST', '/profile', 'Frontend/UserController@update');
@@ -56,6 +60,7 @@ $router->addRoute('GET', '/admin/contacts', 'Admin/ContactsController@index');
 $router->addRoute('GET', '/admin/contacts/view', 'Admin/ContactsController@view'); // ?id=
 $router->addRoute('POST', '/admin/contacts/status', 'Admin/ContactsController@updateStatus');
 $router->addRoute('POST', '/admin/contacts/delete', 'Admin/ContactsController@delete');
+$router->addRoute('POST', '/admin/contacts/reply', 'Admin/ContactsController@reply'); // <-- added reply route
 
 // Pages/content management
 $router->addRoute('GET', '/admin/pages', 'Admin/PagesController@index');
@@ -73,7 +78,6 @@ $router->addRoute('POST', '/admin/products/delete', 'Admin/ProductsController@de
 $router->addRoute('GET', '/admin/profile', 'Admin/ProfileController@edit');
 $router->addRoute('POST', '/admin/profile', 'Admin/ProfileController@update');
 $router->addRoute('POST', '/admin/profile/password', 'Admin/ProfileController@changePassword');
-
 
 // Admin about management
 $router->addRoute('GET', '/admin/about', 'Admin/AboutController@index');
@@ -103,3 +107,18 @@ $router->addRoute('POST', '/admin/orders/delete', 'Admin/OrdersController@delete
 $router->addRoute('GET', '/admin/products/search', 'Admin/ProductsController@search');
 
 
+// Admin contact settings management
+$router->addRoute('GET', '/admin/contact-settings', 'Admin/ContactSettingsController@index');
+$router->addRoute('POST', '/admin/contact-settings/save', 'Admin/ContactSettingsController@save');
+
+// Admin home settings management
+$router->addRoute('GET', '/admin/home-settings', 'Admin/HomeSettingsController@index');
+$router->addRoute('POST', '/admin/home-settings/save', 'Admin/HomeSettingsController@saveSettings');
+$router->addRoute('GET', '/admin/home-settings/slides/create', 'Admin/HomeSettingsController@createSlide');
+$router->addRoute('GET', '/admin/home-settings/slides/edit', 'Admin/HomeSettingsController@editSlide');
+$router->addRoute('POST', '/admin/home-settings/slides/save', 'Admin/HomeSettingsController@saveSlide');
+$router->addRoute('POST', '/admin/home-settings/slides/delete', 'Admin/HomeSettingsController@deleteSlide');
+$router->addRoute('GET', '/admin/home-settings/banners/create', 'Admin/HomeSettingsController@createBanner');
+$router->addRoute('GET', '/admin/home-settings/banners/edit', 'Admin/HomeSettingsController@editBanner');
+$router->addRoute('POST', '/admin/home-settings/banners/save', 'Admin/HomeSettingsController@saveBanner');
+$router->addRoute('POST', '/admin/home-settings/banners/delete', 'Admin/HomeSettingsController@deleteBanner');

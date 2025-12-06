@@ -111,4 +111,20 @@ class Product
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Lấy nhiều product theo mảng ID, giữ đúng thứ tự input
+     */
+    public static function findByIds(array $ids): array
+    {
+        $ids = array_values(array_filter(array_map('intval', $ids)));
+        if (empty($ids))
+            return [];
+
+        $db = Database::getInstance()->getConnection();
+        $in = implode(',', $ids);
+        $sql = "SELECT * FROM products WHERE id IN ($in) ORDER BY FIELD(id, $in)";
+        $stmt = $db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
