@@ -101,4 +101,14 @@ class Product
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function searchByKeyword(string $keyword): array
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM products WHERE name LIKE :kw ORDER BY created_at DESC";
+        $stmt = $db->prepare($sql);
+        $kw = '%' . $keyword . '%';
+        $stmt->bindValue(':kw', $kw, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

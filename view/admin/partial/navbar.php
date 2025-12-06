@@ -11,10 +11,11 @@ if (!isset($currentUser)) {
     style="position: sticky; top: 0; z-index: 999; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
     <div class="container-xl">
         <div class="ms-auto d-flex align-items-center gap-2">
-            <form class="d-none d-md-flex" action="/admin/search" method="GET">
+            <form class="d-none d-md-flex" action="/admin/products/search" method="get" style="max-width:300px;">
                 <div class="input-icon">
-                    <input type="text" name="q" class="form-control" placeholder="Tìm kiếm..." />
+                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm..." value="<?php echo htmlspecialchars($_GET['keyword'] ?? ''); ?>" style="color:#222">
                 </div>
+                <button type="submit" class="btn btn-dark ms-2">Tìm kiếm</button>
             </form>
 
             <div class="dropdown">

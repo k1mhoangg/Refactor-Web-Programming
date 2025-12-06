@@ -86,4 +86,14 @@ class ProductsController extends BaseAdminController
         header('Location: /admin/products');
         exit;
     }
+    
+    public function search()
+    {
+        $keyword = trim($_GET['keyword'] ?? '');
+        $products = [];
+        if ($keyword !== '') {
+            $products = \Model\Product::searchByKeyword($keyword);
+        }
+        require_once BASE_PATH . 'view/admin/products.php';
+    }
 }

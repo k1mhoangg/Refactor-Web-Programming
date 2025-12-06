@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -17,8 +16,10 @@ $router->addRoute('POST', '/cart/checkout', 'Frontend/CartController@checkout');
 
 
 $router->addRoute('GET', '/about', 'Frontend/AboutController');
+
 $router->addRoute('GET', '/faq', 'Frontend/FaqController');
 $router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
+$router->addRoute('GET', '/search', 'Frontend/ProductController@search');
 
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
@@ -91,4 +92,7 @@ $router->addRoute('GET', '/admin/orders', 'Admin/OrdersController@listOrders');
 $router->addRoute('GET', '/admin/orders/view', 'Admin/OrdersController@viewOrder');
 $router->addRoute('POST', '/admin/orders/confirm', 'Admin/OrdersController@confirmOrder');
 $router->addRoute('POST', '/admin/orders/delete', 'Admin/OrdersController@deleteOrder');
+
+$router->addRoute('GET', '/admin/products/search', 'Admin/ProductsController@search');
+
 
