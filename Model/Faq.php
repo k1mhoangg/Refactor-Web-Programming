@@ -14,8 +14,9 @@ class Faq
     private $user_id;
     private $is_published;
     private $created_at;
+    private $updated_at;
 
-    public function __construct($question, $answer, $user_id = null, $is_published = 0, $id = null, $created_at = null)
+    public function __construct($question, $answer, $user_id = null, $is_published = 0, $id = null, $created_at = null, $updated_at = null)
     {
         $this->id = $id;
         $this->question = $question;
@@ -23,6 +24,7 @@ class Faq
         $this->user_id = $user_id;
         $this->is_published = $is_published;
         $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
     }
 
     // Getters
@@ -54,6 +56,11 @@ class Faq
     public function getCreatedAt()
     {
         return $this->created_at;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 
     // Save new FAQ (for user submissions)
@@ -114,7 +121,8 @@ class Faq
                 $row['user_id'] ?? null,
                 $row['is_published'],
                 $row['id'],
-                $row['created_at'] ?? null
+                $row['created_at'] ?? null,
+                $row['updated_at'] ?? null
             );
         }
         
@@ -182,7 +190,8 @@ class Faq
                 $row['user_id'] ?? null,
                 $row['is_published'],
                 $row['id'],
-                $row['created_at'] ?? null
+                $row['created_at'] ?? null,
+                $row['updated_at'] ?? null
             );
         }
         
@@ -229,8 +238,274 @@ class Faq
             $row['user_id'] ?? null,
             $row['is_published'],
             $row['id'],
-            $row['created_at'] ?? null
+            $row['created_at'] ?? null,
+            $row['updated_at'] ?? null
         );
+    }
+
+    // Admin methods
+    // Get published FAQs (is_published = 1 and has answer)
+    public static function getPublished($search = '', int $limit = 0, int $offset = 0)
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        $sql = "SELECT * FROM faqs WHERE is_published = 1 AND answer IS NOT NULL AND answer != ''";
+        
+        if (!empty($search)) {
+            $searchTerm = '%' . $search . '%';
+            $sql .= " AND question LIKE :search";
+        }
+        
+        $sql .= " ORDER BY updated_at DESC, created_at DESC";
+        
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
+        
+        $stmt = $db->prepare($sql);
+        
+        if (!empty($search)) {
+            $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+        }
+        
+        if ($limit > 0) {
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        }
+        
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $faqs = [];
+        foreach ($rows as $row) {
+            $faqs[] = new self(
+                $row['question'],
+                $row['answer'],
+                $row['user_id'] ?? null,
+                $row['is_published'],
+                $row['id'],
+                $row['created_at'] ?? null,
+                $row['updated_at'] ?? null
+            );
+        }
+        
+        return $faqs;
+    }
+
+    // Count published FAQs
+    public static function countPublished($search = ''): int
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        $sql = "SELECT COUNT(*) FROM faqs WHERE is_published = 1 AND answer IS NOT NULL AND answer != ''";
+        
+        if (!empty($search)) {
+            $searchTerm = '%' . $search . '%';
+            $sql .= " AND question LIKE :search";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+            $stmt->execute();
+        } else {
+            $stmt = $db->query($sql);
+        }
+        
+        return (int) $stmt->fetchColumn();
+    }
+
+    // Get unpublished FAQs (is_published = 0 and has answer)
+    public static function getUnpublished($search = '', int $limit = 0, int $offset = 0)
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        $sql = "SELECT * FROM faqs WHERE is_published = 0 AND answer IS NOT NULL AND answer != ''";
+        
+        if (!empty($search)) {
+            $searchTerm = '%' . $search . '%';
+            $sql .= " AND question LIKE :search";
+        }
+        
+        $sql .= " ORDER BY updated_at DESC, created_at DESC";
+        
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
+        
+        $stmt = $db->prepare($sql);
+        
+        if (!empty($search)) {
+            $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+        }
+        
+        if ($limit > 0) {
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        }
+        
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $faqs = [];
+        foreach ($rows as $row) {
+            $faqs[] = new self(
+                $row['question'],
+                $row['answer'],
+                $row['user_id'] ?? null,
+                $row['is_published'],
+                $row['id'],
+                $row['created_at'] ?? null,
+                $row['updated_at'] ?? null
+            );
+        }
+        
+        return $faqs;
+    }
+
+    // Count unpublished FAQs
+    public static function countUnpublished($search = ''): int
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        $sql = "SELECT COUNT(*) FROM faqs WHERE is_published = 0 AND answer IS NOT NULL AND answer != ''";
+        
+        if (!empty($search)) {
+            $searchTerm = '%' . $search . '%';
+            $sql .= " AND question LIKE :search";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+            $stmt->execute();
+        } else {
+            $stmt = $db->query($sql);
+        }
+        
+        return (int) $stmt->fetchColumn();
+    }
+
+    // Get unanswered FAQs (answer IS NULL or empty)
+    public static function getUnanswered($search = '', int $limit = 0, int $offset = 0)
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        $sql = "SELECT * FROM faqs WHERE answer IS NULL OR answer = ''";
+        
+        if (!empty($search)) {
+            $searchTerm = '%' . $search . '%';
+            $sql .= " AND question LIKE :search";
+        }
+        
+        $sql .= " ORDER BY created_at DESC";
+        
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
+        
+        $stmt = $db->prepare($sql);
+        
+        if (!empty($search)) {
+            $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+        }
+        
+        if ($limit > 0) {
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        }
+        
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $faqs = [];
+        foreach ($rows as $row) {
+            $faqs[] = new self(
+                $row['question'],
+                $row['answer'],
+                $row['user_id'] ?? null,
+                $row['is_published'],
+                $row['id'],
+                $row['created_at'] ?? null,
+                $row['updated_at'] ?? null
+            );
+        }
+        
+        return $faqs;
+    }
+
+    // Count unanswered FAQs
+    public static function countUnanswered($search = ''): int
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        $sql = "SELECT COUNT(*) FROM faqs WHERE answer IS NULL OR answer = ''";
+        
+        if (!empty($search)) {
+            $searchTerm = '%' . $search . '%';
+            $sql .= " AND question LIKE :search";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+            $stmt->execute();
+        } else {
+            $stmt = $db->query($sql);
+        }
+        
+        return (int) $stmt->fetchColumn();
+    }
+
+    // Update FAQ (instance method)
+    public function update()
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        // Sanitization
+        $question = sanitizeInput($this->question);
+        $answer = $this->answer ? sanitizeInput($this->answer) : null;
+
+        $stmt = $db->prepare("UPDATE faqs SET question = :question, answer = :answer, is_published = :is_published, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
+        return $stmt->execute([
+            ':question' => $question,
+            ':answer' => $answer,
+            ':is_published' => $this->is_published,
+            ':id' => $this->id
+        ]);
+    }
+
+    // Static update method for admin
+    public static function updateById(int $id, string $question, string $answer, int $is_published): bool
+    {
+        $db = Database::getInstance()->getConnection();
+        
+        // Sanitization
+        $question = sanitizeInput($question);
+        $answer = !empty($answer) ? sanitizeInput($answer) : null;
+
+        $stmt = $db->prepare("UPDATE faqs SET question = :question, answer = :answer, is_published = :is_published, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
+        return $stmt->execute([
+            ':question' => $question,
+            ':answer' => $answer,
+            ':is_published' => $is_published,
+            ':id' => $id
+        ]);
+    }
+
+    // Delete FAQ
+    public static function deleteById(int $id): bool
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("DELETE FROM faqs WHERE id = :id");
+        return $stmt->execute([':id' => $id]);
+    }
+
+    // Unpublish FAQ (set is_published = 0)
+    public static function unpublish(int $id): bool
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("UPDATE faqs SET is_published = 0, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
+        return $stmt->execute([':id' => $id]);
+    }
+
+    // Publish FAQ (set is_published = 1)
+    public static function publish(int $id): bool
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("UPDATE faqs SET is_published = 1, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
+        return $stmt->execute([':id' => $id]);
     }
 }
 

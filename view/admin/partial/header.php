@@ -87,6 +87,13 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="/admin/faqs">
+                                <span class="nav-link-icon"><i class="ti ti-question-mark"></i></span>
+                                <span class="nav-link-title">Quản lý trang hỏi/đáp</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/admin/orders">
                                 <span class="nav-link-icon"><i class="ti ti-receipt"></i></span>
                                 <span class="nav-link-title">Quản lý đơn hàng</span>
