@@ -7,11 +7,19 @@
 // Frontend routes (controller namespace: Controller\Frontend)
 $router->addRoute('GET', '/', 'Frontend/HomeController');
 $router->addRoute('GET', '/contact', 'Frontend/ContactController');
+$router->addRoute('GET', '/pricing', 'Frontend/PricingController@index');
+$router->addRoute('GET', '/product/{id}', 'Frontend/ProductController@detail');
+$router->addRoute('GET', '/cart', 'Frontend/CartController@view');
+$router->addRoute('POST', '/cart/add', 'Frontend/CartController@add');
 $router->addRoute('POST', '/contact', 'Frontend/ContactController@submit');
+$router->addRoute('POST', '/cart/checkout', 'Frontend/CartController@checkout');
+
 
 $router->addRoute('GET', '/about', 'Frontend/AboutController');
+
 $router->addRoute('GET', '/faq', 'Frontend/FaqController');
 $router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
+$router->addRoute('GET', '/search', 'Frontend/ProductController@search');
 
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
@@ -26,6 +34,7 @@ $router->addRoute('GET', '/login', 'Frontend/AuthController@loginForm');
 $router->addRoute('POST', '/login', 'Frontend/AuthController@login');
 // Logout requires authenticated user (customer or admin)
 $router->addRoute('GET', '/logout', 'Frontend/AuthController@logout');
+
 
 
 
@@ -65,6 +74,7 @@ $router->addRoute('GET', '/admin/profile', 'Admin/ProfileController@edit');
 $router->addRoute('POST', '/admin/profile', 'Admin/ProfileController@update');
 $router->addRoute('POST', '/admin/profile/password', 'Admin/ProfileController@changePassword');
 
+
 // Admin about management
 $router->addRoute('GET', '/admin/about', 'Admin/AboutController@index');
 $router->addRoute('GET', '/admin/about/decor/create', 'Admin/AboutController@createDecor');
@@ -76,3 +86,13 @@ $router->addRoute('POST', '/admin/about/save-decor-image', 'Admin/AboutControlle
 $router->addRoute('POST', '/admin/about/delete-decor-image', 'Admin/AboutController@deleteDecorImage');
 $router->addRoute('POST', '/admin/about/save-advantage', 'Admin/AboutController@saveAdvantage');
 $router->addRoute('POST', '/admin/about/delete-advantage', 'Admin/AboutController@deleteAdvantage');
+
+// Admin order management
+$router->addRoute('GET', '/admin/orders', 'Admin/OrdersController@listOrders');
+$router->addRoute('GET', '/admin/orders/view', 'Admin/OrdersController@viewOrder');
+$router->addRoute('POST', '/admin/orders/confirm', 'Admin/OrdersController@confirmOrder');
+$router->addRoute('POST', '/admin/orders/delete', 'Admin/OrdersController@deleteOrder');
+
+$router->addRoute('GET', '/admin/products/search', 'Admin/ProductsController@search');
+
+

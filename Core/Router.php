@@ -23,24 +23,31 @@ class Router
     public function dispatch($method, $path)
     {
         foreach ($this->routes as $route) {
-            if ($route['method'] === strtoupper($method) && $route['path'] === $path) {
+            if ($route['method'] !== strtoupper($method)) continue;
 
+            // Xử lý route động: chuyển {param} thành regex
+            $routePattern = preg_replace('#\{([^/]+)\}#', '(?P<$1>[^/]+)', $route['path']);
+            $routePattern = '#^' . $routePattern . '$#';
+
+            if (preg_match($routePattern, $path, $matches)) {
                 $controllerDef = $route['controller'];
+
+                // Lấy các tham số động
+                $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
 
                 // 1) Nếu là callable (closure, function, [obj,method], ...)
                 if (is_callable($controllerDef)) {
-                    return call_user_func($controllerDef);
+                    return call_user_func_array($controllerDef, $params);
                 }
 
                 try {
                     // 2) Nếu là object instance
                     if (is_object($controllerDef)) {
-                        // ưu tiên __invoke, sau đó index
                         if (method_exists($controllerDef, '__invoke')) {
-                            return $controllerDef();
+                            return call_user_func_array([$controllerDef, '__invoke'], $params);
                         }
                         if (method_exists($controllerDef, 'index')) {
-                            return $controllerDef->index();
+                            return call_user_func_array([$controllerDef, 'index'], $params);
                         }
                         throw new \Exception('Controller object has no callable method.');
                     }
@@ -63,7 +70,7 @@ class Router
                             throw new \Exception("Method {$methodName} not found on controller {$controllerClass}.");
                         }
 
-                        return $controller->{$methodName}();
+                        return call_user_func_array([$controller, $methodName], $params);
                     }
 
                     throw new \Exception('Unsupported controller definition.');
