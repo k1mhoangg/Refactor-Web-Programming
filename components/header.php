@@ -23,8 +23,10 @@ $current_path = parse_url($current_uri, PHP_URL_PATH);
       <a href="/news" class="<?php echo ($current_path === '/news') ? 'active' : ''; ?>">Tin tức</a>
     </nav>
     <div class="others">
-      <input type="text" placeholder="Tìm kiếm..." />
-      <i class="fas fa-search"></i>
+      <form action="/search" method="get" style="display:inline-block;">
+        <input type="text" name="q" placeholder="Tìm kiếm..." style="color:#111;" />
+        <button type="submit" style="background:none;border:none;padding:0;margin-left:2px;cursor:pointer;"><i class="fas fa-search"></i></button>
+      </form>
       <?php if ($current_user): ?>
         <span class="text-white mr-2">Xin chào, <?php echo htmlspecialchars($current_user['username']); ?></span>
         <a href="/profile"><i class="fa-regular fa-user text-white"></i></a>

@@ -1,0 +1,25 @@
+/* CSS riêng cho trang giỏ hàng */
+.cart-table {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 16px 20px;
+    text-align: center;
+}
+
+.cart-table th {
+    background: #f3f4f6;
+    font-weight: 600;
+}
+
+.cart-table tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.cart-table tr:hover {
+    background: #e0e7ef;
+}
