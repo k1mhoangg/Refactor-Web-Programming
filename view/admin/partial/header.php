@@ -94,6 +94,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="/admin/news">
+                                <span class="nav-link-icon"><i class="ti ti-box"></i></span>
+                                <span class="nav-link-title">Quản lý tin tức</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/admin/faqs">
                                 <span class="nav-link-icon"><i class="ti ti-question-mark"></i></span>
                                 <span class="nav-link-title">Quản lý trang hỏi/đáp</span>
