@@ -185,7 +185,7 @@ $activeTabId = $tabMap[$activeTab] ?? 'tab-settings';
                                     <?php if (!empty($slides)):
                                         foreach ($slides as $s): ?>
                                             <tr>
-                                                <td><img src="<?php echo htmlspecialchars($s['image_url']); ?>"
+                                                <td><img src="<?php echo '../' . htmlspecialchars($s['image_url']); ?>"
                                                         style="width:60px;height:40px;object-fit:cover;border-radius:4px"></td>
                                                 <td><?php echo htmlspecialchars($s['title'] ?? '—'); ?></td>
                                                 <td><?php echo (int) $s['display_order']; ?></td>
@@ -237,7 +237,7 @@ $activeTabId = $tabMap[$activeTab] ?? 'tab-settings';
                                     <?php if (!empty($banners)):
                                         foreach ($banners as $b): ?>
                                             <tr>
-                                                <td><img src="<?php echo htmlspecialchars($b['image_url']); ?>"
+                                                <td><img src="<?php echo '../' . htmlspecialchars($b['image_url']); ?>"
                                                         style="width:60px;height:40px;object-fit:cover;border-radius:4px"></td>
                                                 <td><?php echo htmlspecialchars($b['title'] ?? '—'); ?></td>
                                                 <td><?php echo htmlspecialchars($b['link'] ?? '/'); ?></td>
