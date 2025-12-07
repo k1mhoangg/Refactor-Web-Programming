@@ -20,3 +20,35 @@ if (searchIcon && searchInput) {
     searchInput.focus();
   });
 }
+
+// Hamburger Menu Toggle
+const hamburgerBtn = document.querySelector(".hamburger-btn");
+const mobileMenu = document.querySelector(".mobile-menu");
+
+if (hamburgerBtn && mobileMenu) {
+  hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+  });
+
+  // Đóng menu khi click bên ngoài
+  document.addEventListener("click", (e) => {
+    if (
+      !hamburgerBtn.contains(e.target) &&
+      !mobileMenu.contains(e.target) &&
+      mobileMenu.classList.contains("active")
+    ) {
+      hamburgerBtn.classList.remove("active");
+      mobileMenu.classList.remove("active");
+    }
+  });
+
+  // Đóng menu khi click vào link trong menu
+  const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburgerBtn.classList.remove("active");
+      mobileMenu.classList.remove("active");
+    });
+  });
+}
