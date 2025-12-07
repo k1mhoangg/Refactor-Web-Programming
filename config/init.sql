@@ -171,3 +171,74 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
+CREATE TABLE IF NOT EXISTS news (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,               -- Tiêu đề bài viết
+    slug VARCHAR(255) NOT NULL UNIQUE,         -- Đường dẫn SEO
+    thumbnail VARCHAR(255),                    -- Ảnh đại diện
+    content LONGTEXT NOT NULL,                 -- Nội dung bài viết
+    author_id INT NULL, -- Người đăng (links users)
+    category VARCHAR(100),                     -- Danh mục
+    views INT DEFAULT 0,                       -- Lượt xem
+    is_published BOOLEAN DEFAULT TRUE,         -- Trạng thái xuất bản
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE SET NULL,
+
+    INDEX idx_category (category),
+    INDEX idx_slug (slug),
+    INDEX idx_published (is_published)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS news_comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    news_id INT NOT NULL,                      -- Bài viết bị bình luận
+    user_id INT NULL, -- Người bình luận
+    comment TEXT NOT NULL,                     -- Nội dung bình luận
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (news_id) REFERENCES news(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+
+    INDEX idx_news (news_id),
+    INDEX idx_user (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO news (title, slug, content, thumbnail, author_id, category)
+VALUES
+('Xu hướng thiết kế nội thất 2025', 'xu-huong-thiet-ke-noi-that-2025',
+ 'Khám phá những xu hướng nội thất nổi bật dự đoán sẽ thống trị năm 2025...',
+ 'images/news/news_1.jpg', 1, 'Xu hướng'),
+
+('Top 10 phong cách Decor thịnh hành', 'top-10-phong-cach-decor-thinh-hanh',
+ 'Danh sách 10 phong cách Decor được yêu thích nhất hiện nay...',
+ 'images/news/news_2.jpg', 1, 'Decor'),
+
+('Cách tối ưu không gian chung cư nhỏ', 'toi-uu-khong-gian-chung-cu-nho',
+ 'Bí quyết giúp tận dụng diện tích nhỏ hiệu quả khi thiết kế nội thất...',
+ 'images/news/news_3.jpg', 2, 'Chung cư'),
+
+('Nội thất gỗ tự nhiên – lựa chọn hàng đầu', 'noi-that-go-tu-nhien-lua-chon-hang-dau',
+ 'Ưu điểm của nội thất gỗ tự nhiên và lý do ngày càng được ưa chuộng...',
+ 'images/news/news_4.jpg', 2, 'Chất liệu'),
+
+('Màu sắc nội thất 2025: Sự trở lại của tone Earth', 'mau-sac-noi-that-2025-earth',
+ 'Các tone màu Earth đang trở lại mạnh mẽ trong các thiết kế hiện đại...',
+ 'images/news/news_5.jpg', 3, 'Màu sắc');
+
+INSERT INTO news_comments (news_id, user_id, comment)
+VALUES
+(1, 2, 'Bài viết rất hữu ích, cảm ơn Admin!'),
+(1, 3, 'Xu hướng năm nay đẹp thật sự!'  ),
+
+(2, 3, 'Mình thích phong cách tối giản nhất.'),
+(2, 2, 'Danh sách hữu ích, cảm ơn bài viết!'),
+
+(3, 2, 'Nhà mình 50m2 mà áp dụng được luôn.'),
+
+(4, 3, 'Nội thất gỗ luôn là chân ái.'),
+
+(5, 2, 'Tone Earth nhìn rất dễ chịu.');

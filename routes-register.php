@@ -39,7 +39,9 @@ $router->addRoute('POST', '/login', 'Frontend/AuthController@login');
 // Logout requires authenticated user (customer or admin)
 $router->addRoute('GET', '/logout', 'Frontend/AuthController@logout');
 
-
+$router->addRoute('GET', '/news', 'Frontend/NewsController@index');
+$router->addRoute('GET', '/news/{id}', 'Frontend/NewsController@detail');
+$router->addRoute('POST', '/news/{id}/comment', 'Frontend/NewsController@addComment');
 
 
 /**
@@ -126,3 +128,15 @@ $router->addRoute('GET', '/admin/home-settings/banners/create', 'Admin/HomeSetti
 $router->addRoute('GET', '/admin/home-settings/banners/edit', 'Admin/HomeSettingsController@editBanner');
 $router->addRoute('POST', '/admin/home-settings/banners/save', 'Admin/HomeSettingsController@saveBanner');
 $router->addRoute('POST', '/admin/home-settings/banners/delete', 'Admin/HomeSettingsController@deleteBanner');
+// News management (Admin)
+$router->addRoute('GET', '/admin/news', 'Admin/NewsController@index');
+$router->addRoute('GET', '/admin/news/create', 'Admin/NewsController@edit');
+$router->addRoute('POST', '/admin/news/create', 'Admin/NewsController@edit');
+$router->addRoute('GET', '/admin/news/{id}/edit', 'Admin/NewsController@edit');
+$router->addRoute('POST', '/admin/news/{id}/edit', 'Admin/NewsController@edit');
+$router->addRoute('POST', '/admin/news/{id}/delete', 'Admin/NewsController@delete');
+$router->addRoute('GET', '/admin/news/{newsId}/comments', 'Admin/NewsController@comments');
+$router->addRoute('POST', '/admin/news/{newsId}/comments/{commentId}/delete', 'Admin/NewsController@deleteComment');
+
+$router->addRoute('POST', '/admin/news/comments/{commentId}/delete', 'Admin/NewsController@deleteComment');
+// Admin: quản lý tất cả bình luận bài viết
