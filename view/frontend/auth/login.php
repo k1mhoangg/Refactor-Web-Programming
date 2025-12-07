@@ -22,7 +22,7 @@
             session_start();
         if (!empty($_SESSION['flash'])) {
             $f = $_SESSION['flash'];
-            $cls = ($f['type'] === 'success') ? 'text-green-700' : 'text-red-700';
+            $cls = ($f['type'] === 'success') ? 'text-green-700 bg-green-50 border border-green-200 p-3 rounded' : 'text-red-700 bg-red-50 border border-red-200 p-3 rounded';
             echo '<div class="' . $cls . ' mb-3">' . htmlspecialchars($f['message']) . '</div>';
             unset($_SESSION['flash']);
         }
@@ -30,16 +30,24 @@
 
         <form method="POST" action="/login">
             <div class="mb-3">
-                <label class="block text-sm font-medium">Tên đăng nhập</label>
-                <input name="username" class="w-full border px-3 py-2 rounded" required />
+                <label class="block text-sm font-medium mb-1">Tên đăng nhập</label>
+                <input name="username" type="text"
+                    class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500"
+                    placeholder="Nhập tên đăng nhập" required />
             </div>
-            <div class="mb-3">
-                <label class="block text-sm font-medium">Mật khẩu</label>
-                <input name="password" type="password" class="w-full border px-3 py-2 rounded" required />
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Mật khẩu</label>
+                <input name="password" type="password"
+                    class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500"
+                    placeholder="Nhập mật khẩu" required />
             </div>
             <div class="flex items-center gap-3">
-                <button class="bg-gray-800 text-white px-4 py-2 rounded">Đăng nhập</button>
-                <a href="/register" class="text-sm text-blue-600">Chưa có tài khoản? Đăng ký</a>
+                <button type="submit" class="bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-700 transition">
+                    Đăng nhập
+                </button>
+                <a href="/register" class="text-sm text-blue-600 hover:underline">
+                    Chưa có tài khoản? Đăng ký
+                </a>
             </div>
         </form>
     </main>

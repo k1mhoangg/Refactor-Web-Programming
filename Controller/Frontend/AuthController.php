@@ -32,36 +32,60 @@ class AuthController
 
         // sanitize
         $username = sanitizeInput($_POST['username'] ?? '');
+        $email = sanitizeInput($_POST['email'] ?? '');
+        $displayName = sanitizeInput($_POST['display_name'] ?? '');
         $password = trim($_POST['password'] ?? '');
         $password_confirm = trim($_POST['password_confirm'] ?? '');
 
-        if ($username === '' || $password === '') {
-            if (session_status() === PHP_SESSION_NONE)
-                session_start();
-            $_SESSION['flash'] = ['type' => 'error', 'message' => 'Vui lòng nhập username và password.'];
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+
+        // Validation
+        if ($username === '' || $password === '' || $email === '') {
+            $_SESSION['flash'] = ['type' => 'error', 'message' => 'Vui lòng nhập đầy đủ thông tin bắt buộc (username, email, password).'];
+            header('Location: /register');
+            exit;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['flash'] = ['type' => 'error', 'message' => 'Email không hợp lệ.'];
+            header('Location: /register');
+            exit;
+        }
+
+        if (strlen($password) < 6) {
+            $_SESSION['flash'] = ['type' => 'error', 'message' => 'Mật khẩu phải có ít nhất 6 ký tự.'];
             header('Location: /register');
             exit;
         }
 
         if ($password !== $password_confirm) {
-            if (session_status() === PHP_SESSION_NONE)
-                session_start();
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Xác nhận mật khẩu không khớp.'];
             header('Location: /register');
             exit;
         }
 
         try {
-            $user = new User($username, $password, 'customer');
-            $user->save();
-            if (session_status() === PHP_SESSION_NONE)
-                session_start();
-            $_SESSION['flash'] = ['type' => 'success', 'message' => 'Đăng ký thành công. Vui lòng đăng nhập.'];
-            header('Location: /login');
+            // Create user with User::create() method
+            $data = [
+                'username' => $username,
+                'password' => $password,
+                'email' => $email,
+                'display_name' => $displayName ?: $username, // Use username if display_name is empty
+                'role' => 'customer'
+            ];
+
+            $newId = User::create($data);
+
+            if ($newId) {
+                $_SESSION['flash'] = ['type' => 'success', 'message' => 'Đăng ký thành công. Vui lòng đăng nhập.'];
+                header('Location: /login');
+            } else {
+                $_SESSION['flash'] = ['type' => 'error', 'message' => 'Đăng ký thất bại. Vui lòng thử lại.'];
+                header('Location: /register');
+            }
             exit;
         } catch (\Exception $e) {
-            if (session_status() === PHP_SESSION_NONE)
-                session_start();
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Đăng ký thất bại: ' . $e->getMessage()];
             header('Location: /register');
             exit;
@@ -115,7 +139,7 @@ class AuthController
         // Redirect to previous URL if it exists, otherwise redirect to home
         $previousUrl = getPreviousUrl();
         $redirectUrl = $previousUrl ? $previousUrl : '/';
-        
+
         header('Location: ' . $redirectUrl);
         exit;
     }
