@@ -1,9 +1,13 @@
 <?php
+$showCarousel = $homeSettings['show_carousel'] ?? true;
+if (!$showCarousel)
+    return;
+
 $slidesData = $slides ?? [];
 if (empty($slidesData)) {
     $slidesData = [
-        ['image_url' => 'images/sample.jpg', 'title' => 'Thiết kế phòng khách', 'subtitle' => 'Phong cách hiện đại, tối giản'],
-        ['image_url' => 'images/phong_ngu1.jpg', 'title' => 'Phòng ngủ ấm cúng', 'subtitle' => 'Tối ưu ánh sáng và tiện nghi'],
+        ['image_url' => 'images/living_room.jpg', 'title' => 'Thiết kế phòng khách', 'subtitle' => 'Phong cách hiện đại, tối giản'],
+        ['image_url' => 'images/bed_room.jpg', 'title' => 'Phòng ngủ ấm cúng', 'subtitle' => 'Tối ưu ánh sáng và tiện nghi'],
     ];
 }
 ?>
