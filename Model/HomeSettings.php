@@ -30,22 +30,18 @@ class HomeSettings
             'hero_subtitle',
             'hero_button_text',
             'hero_button_link',
+            'show_carousel',
             'featured_title',
             'featured_subtitle',
-            'featured_count',
             'show_featured',
             'featured_product_ids',
             'recent_title',
             'recent_subtitle',
-            'recent_count',
             'show_recent',
             'recent_product_ids',
             'show_banner',
-            'banner_style',
             'show_categories',
-            'categories_title',
-            'meta_title',
-            'meta_description'
+            'categories_title'
         ];
 
         $sets = [];

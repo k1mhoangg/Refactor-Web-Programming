@@ -45,8 +45,6 @@ class HomeSettingsController extends BaseAdminController
             $data['featured_title'] = trim($_POST['featured_title']);
         if (isset($_POST['featured_subtitle']))
             $data['featured_subtitle'] = trim($_POST['featured_subtitle']);
-        if (isset($_POST['featured_count']))
-            $data['featured_count'] = (int) $_POST['featured_count'];
         $data['show_featured'] = isset($_POST['show_featured']) ? 1 : 0;
 
         // Recent section
@@ -54,25 +52,18 @@ class HomeSettingsController extends BaseAdminController
             $data['recent_title'] = trim($_POST['recent_title']);
         if (isset($_POST['recent_subtitle']))
             $data['recent_subtitle'] = trim($_POST['recent_subtitle']);
-        if (isset($_POST['recent_count']))
-            $data['recent_count'] = (int) $_POST['recent_count'];
         $data['show_recent'] = isset($_POST['show_recent']) ? 1 : 0;
+
+        // Carousel section
+        $data['show_carousel'] = isset($_POST['show_carousel']) ? 1 : 0;
 
         // Banner section
         $data['show_banner'] = isset($_POST['show_banner']) ? 1 : 0;
-        if (isset($_POST['banner_style']))
-            $data['banner_style'] = trim($_POST['banner_style']);
 
         // Categories section
         $data['show_categories'] = isset($_POST['show_categories']) ? 1 : 0;
         if (isset($_POST['categories_title']))
             $data['categories_title'] = trim($_POST['categories_title']);
-
-        // SEO
-        if (isset($_POST['meta_title']))
-            $data['meta_title'] = trim($_POST['meta_title']);
-        if (isset($_POST['meta_description']))
-            $data['meta_description'] = trim($_POST['meta_description']);
 
         // Selected product IDs
         if (!empty($_POST['featured_product_ids']) && is_array($_POST['featured_product_ids'])) {
