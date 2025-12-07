@@ -71,13 +71,6 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/pages">
-                                <span class="nav-link-icon"><i class="ti ti-file-text"></i></span>
-                                <span class="nav-link-title">Quản lý Pages</span>
-                            </a>
-                        </li>
-
 
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/about">

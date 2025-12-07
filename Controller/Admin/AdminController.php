@@ -3,7 +3,6 @@ namespace Controller\Admin;
 
 use Model\User;
 use Model\Contact;
-use Model\Page;
 use Core\Pagination;
 
 class AdminController extends BaseAdminController
@@ -13,16 +12,9 @@ class AdminController extends BaseAdminController
         // BaseAdminController::__construct đã đảm bảo session và quyền admin
         $users = User::all();              // trả về mảng User objects
         $contacts = Contact::getAll();     // trả về mảng assoc
-        $pages = Page::all();              // trả về mảng assoc
 
         $countUsers = User::count();
         $countContacts = Contact::count();
-
-        try {
-            $countPages = Page::count();
-        } catch (\Throwable $e) {
-            $countPages = 0;
-        }
 
         // Lấy users mới nhất (có created_at)
         $recentUsers = User::recent(5);
@@ -30,7 +22,7 @@ class AdminController extends BaseAdminController
         // Lấy contacts mới nhất
         $recentContacts = Contact::recent(5);
 
-        // Biến truyền vào view: $countUsers, $countContacts, $countPages, $recentUsers, $recentContacts
+        // Biến truyền vào view: $countUsers, $countContacts, $recentUsers, $recentContacts
         require_once BASE_PATH . 'view/admin/dashboard.php';
     }
 
