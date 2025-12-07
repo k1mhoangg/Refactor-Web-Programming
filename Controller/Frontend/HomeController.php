@@ -19,8 +19,7 @@ class HomeController
         if (!empty($featuredIds)) {
             $featuredProducts = Product::findByIds($featuredIds);
         } else {
-            $count = (int) ($homeSettings['featured_count'] ?? 6);
-            $featuredProducts = ($homeSettings['show_featured'] ?? 1) ? Product::getFeatured($count) : [];
+            $featuredProducts = ($homeSettings['show_featured'] ?? 1) ? Product::getFeatured(6) : [];
         }
 
         // Recent products: ưu tiên danh sách được admin chọn
@@ -29,8 +28,7 @@ class HomeController
         if (!empty($recentIds)) {
             $recentProducts = Product::findByIds($recentIds);
         } else {
-            $count = (int) ($homeSettings['recent_count'] ?? 6);
-            $recentProducts = ($homeSettings['show_recent'] ?? 1) ? Product::getRecent($count) : [];
+            $recentProducts = ($homeSettings['show_recent'] ?? 1) ? Product::getRecent(6) : [];
         }
 
         require_once BASE_PATH . 'view/frontend/home.php';

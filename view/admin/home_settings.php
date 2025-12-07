@@ -67,6 +67,29 @@ $activeTabId = $tabMap[$activeTab] ?? 'tab-settings';
                         <form method="POST" action="/admin/home-settings/save">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <h4 class="mb-3">Carousel</h4>
+                                    <div class="mb-3">
+                                        <label class="form-check">
+                                            <input type="checkbox" name="show_carousel" class="form-check-input" <?php echo ($settings['show_carousel'] ?? 1) ? 'checked' : ''; ?>>
+                                            <span class="form-check-label">Hiển thị Carousel</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="mb-3">Banner Section</h4>
+                                    <div class="mb-3">
+                                        <label class="form-check">
+                                            <input type="checkbox" name="show_banner" class="form-check-input" <?php echo ($settings['show_banner'] ?? 1) ? 'checked' : ''; ?>>
+                                            <span class="form-check-label">Hiển thị Banner</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="row">
+                                <div class="col-md-6">
                                     <h4 class="mb-3">Phần Sản phẩm nổi bật</h4>
                                     <div class="mb-3">
                                         <label class="form-check">
@@ -78,12 +101,6 @@ $activeTabId = $tabMap[$activeTab] ?? 'tab-settings';
                                         <label class="form-label">Tiêu đề</label>
                                         <input type="text" name="featured_title" class="form-control"
                                             value="<?php echo htmlspecialchars($settings['featured_title'] ?? ''); ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Số sản phẩm hiển thị (nếu không chọn cụ thể)</label>
-                                        <input type="number" name="featured_count" class="form-control"
-                                            value="<?php echo (int) ($settings['featured_count'] ?? 6); ?>" min="1"
-                                            max="20">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Chọn sản phẩm xuất hiện (Featured) — chọn
@@ -118,12 +135,6 @@ $activeTabId = $tabMap[$activeTab] ?? 'tab-settings';
                                             value="<?php echo htmlspecialchars($settings['recent_title'] ?? ''); ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Số sản phẩm hiển thị (nếu không chọn cụ thể)</label>
-                                        <input type="number" name="recent_count" class="form-control"
-                                            value="<?php echo (int) ($settings['recent_count'] ?? 6); ?>" min="1"
-                                            max="20">
-                                    </div>
-                                    <div class="mb-3">
                                         <label class="form-label">Chọn sản phẩm xuất hiện (Recent) — chọn nhiều</label>
                                         <small class="form-hint d-block mb-2 text-muted">Nếu chọn sản phẩm ở đây, hệ
                                             thống sẽ ưu tiên hiển thị các sản phẩm này theo thứ tự. Giữ Ctrl/Cmd để chọn
@@ -138,42 +149,6 @@ $activeTabId = $tabMap[$activeTab] ?? 'tab-settings';
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-3">Banner Section</h4>
-                                    <div class="mb-3">
-                                        <label class="form-check">
-                                            <input type="checkbox" name="show_banner" class="form-check-input" <?php echo ($settings['show_banner'] ?? 1) ? 'checked' : ''; ?>>
-                                            <span class="form-check-label">Hiển thị Banner</span>
-                                        </label>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Kiểu Banner</label>
-                                        <select name="banner_style" class="form-select">
-                                            <option value="panels" <?php echo ($settings['banner_style'] ?? '') === 'panels' ? 'selected' : ''; ?>>Panels (mở rộng khi hover)</option>
-                                            <option value="grid" <?php echo ($settings['banner_style'] ?? '') === 'grid' ? 'selected' : ''; ?>>Grid</option>
-                                            <option value="single" <?php echo ($settings['banner_style'] ?? '') === 'single' ? 'selected' : ''; ?>>Single Image</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <h4 class="mb-3">SEO</h4>
-                                    <div class="mb-3">
-                                        <label class="form-label">Meta Title</label>
-                                        <input type="text" name="meta_title" class="form-control"
-                                            value="<?php echo htmlspecialchars($settings['meta_title'] ?? ''); ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Meta Description</label>
-                                        <textarea name="meta_description" rows="3"
-                                            class="form-control"><?php echo htmlspecialchars($settings['meta_description'] ?? ''); ?></textarea>
                                     </div>
                                 </div>
                             </div>

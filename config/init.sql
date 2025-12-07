@@ -108,18 +108,6 @@ CREATE TABLE IF NOT EXISTS contacts (
     INDEX idx_created (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Bảng Page (quản lý nội dung trang tĩnh)
-CREATE TABLE IF NOT EXISTS pages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    slug VARCHAR(150) NOT NULL UNIQUE,
-    title VARCHAR(255) NOT NULL,
-    content TEXT,
-    meta TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_slug (slug)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 -- Insert dữ liệu mẫu cho User (password là 'password123' đã hash)
 INSERT INTO users (username, email, password, full_name, phone, role) VALUES
 ('admin', 'admin@homedecor.com', '$2y$10$sN8S4tajg1REncAWQuj7KuZZ1J.2Vl828TDnnG2fgYJHscTxNv7MC', 'Administrator', '0901234567', 'admin'),

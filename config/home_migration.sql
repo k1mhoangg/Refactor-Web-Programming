@@ -11,34 +11,27 @@ CREATE TABLE IF NOT EXISTS home_settings (
     hero_button_text VARCHAR(100) DEFAULT 'Khám phá ngay',
     hero_button_link VARCHAR(255) DEFAULT '/about',
     
+    -- Carousel section
+    show_carousel TINYINT(1) DEFAULT 1,
+    
     -- Featured products section
     featured_title VARCHAR(255) DEFAULT 'SẢN PHẨM NỔI BẬT',
     featured_subtitle TEXT,
-    featured_count INT DEFAULT 6,
     show_featured TINYINT(1) DEFAULT 1,
     featured_product_ids TEXT DEFAULT NULL,
     
     -- Recent products section
     recent_title VARCHAR(255) DEFAULT 'SẢN PHẨM MỚI NHẤT',
     recent_subtitle TEXT,
-    recent_count INT DEFAULT 6,
     show_recent TINYINT(1) DEFAULT 1,
     recent_product_ids TEXT DEFAULT NULL,
     
     -- Banner section
     show_banner TINYINT(1) DEFAULT 1,
-    banner_style ENUM('panels','grid','single') DEFAULT 'panels',
     
     -- Categories section
     show_categories TINYINT(1) DEFAULT 1,
     categories_title VARCHAR(255) DEFAULT 'DANH MỤC SẢN PHẨM',
-    
-    -- Statistics section
-    show_statistics TINYINT(1) DEFAULT 0,
-    
-    -- SEO
-    meta_title VARCHAR(255) DEFAULT 'HomeDecor | Thiết kế nội thất cao cấp',
-    meta_description TEXT,
     
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -81,23 +74,23 @@ WHERE NOT EXISTS (SELECT 1 FROM home_settings WHERE id = 1);
 -- Insert sample slides if empty
 INSERT INTO home_slides (image_url, title, subtitle, display_order, is_active)
 SELECT * FROM (
-    SELECT 'images/sample.jpg' as image_url, 'Thiết kế phòng khách' as title, 'Phong cách hiện đại, tối giản' as subtitle, 1 as display_order, 1 as is_active
+    SELECT 'images/living_room.jpg' as image_url, 'Thiết kế phòng khách' as title, 'Phong cách hiện đại, tối giản' as subtitle, 1 as display_order, 1 as is_active
     UNION ALL
-    SELECT 'images/phong_ngu1.jpg', 'Phòng ngủ ấm cúng', 'Tối ưu ánh sáng và tiện nghi', 2, 1
+    SELECT 'images/bed_room.jpg', 'Phòng ngủ ấm cúng', 'Tối ưu ánh sáng và tiện nghi', 2, 1
     UNION ALL
-    SELECT 'images/sample.jpg', 'Khu vực ăn uống', 'Trang trí tinh tế cho bữa cơm gia đình', 3, 1
+    SELECT 'images/dining_room.jpg', 'Khu vực ăn uống', 'Trang trí tinh tế cho bữa cơm gia đình', 3, 1
 ) AS tmp
 WHERE NOT EXISTS (SELECT 1 FROM home_slides);
 
 -- Insert sample banners if empty
 INSERT INTO home_banners (image_url, title, link, display_order, is_active)
 SELECT * FROM (
-    SELECT 'images/sample.jpg' as image_url, 'Living Room' as title, '/pricing' as link, 1 as display_order, 1 as is_active
+    SELECT 'images/living_room.jpg' as image_url, 'Living Room' as title, '/pricing' as link, 1 as display_order, 1 as is_active
     UNION ALL
-    SELECT 'images/phong_ngu1.jpg', 'Bedroom', '/pricing', 2, 1
+    SELECT 'images/bed_room.jpg', 'Bedroom', '/pricing', 2, 1
     UNION ALL
-    SELECT 'images/sample.jpg', 'Dining Area', '/pricing', 3, 1
+    SELECT 'images/dining_room.jpg', 'Dining Area', '/pricing', 3, 1
     UNION ALL
-    SELECT 'images/sample.jpg', 'Workspace', '/pricing', 4, 1
+    SELECT 'images/workspace.jpg', 'Workspace', '/pricing', 4, 1
 ) AS tmp
 WHERE NOT EXISTS (SELECT 1 FROM home_banners);
