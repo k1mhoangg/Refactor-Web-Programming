@@ -2,9 +2,7 @@
 namespace Controller\Frontend;
 
 class CartController
-
 {
-        // Xử lý thanh toán
     public function checkout()
     {
         if (session_status() === PHP_SESSION_NONE)
