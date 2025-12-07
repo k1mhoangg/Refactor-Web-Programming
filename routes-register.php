@@ -54,6 +54,10 @@ $router->addRoute('GET', '/admin/logout', 'Admin/AuthController@logout');
 // Admin routes (Controller\Admin)
 $router->addRoute('GET', '/admin', 'Admin/AdminController@index');
 $router->addRoute('GET', '/admin/users', 'Admin/AdminController@listUsers');
+$router->addRoute('GET', '/admin/users/create', 'Admin/AdminController@createUser');
+$router->addRoute('GET', '/admin/users/edit', 'Admin/AdminController@editUser');
+$router->addRoute('POST', '/admin/users/save', 'Admin/AdminController@saveUser');
+$router->addRoute('POST', '/admin/users/delete', 'Admin/AdminController@deleteUser');
 
 // Contacts management
 $router->addRoute('GET', '/admin/contacts', 'Admin/ContactsController@index');

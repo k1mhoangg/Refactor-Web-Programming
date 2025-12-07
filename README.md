@@ -1,3 +1,163 @@
+# Hướng dẫn cài đặt
+
+## 1. Cài đặt Composer
+
+### Windows
+
+1. Tải Composer từ: https://getcomposer.org/download/
+2. Chạy file `Composer-Setup.exe`
+3. Làm theo hướng dẫn cài đặt (chọn đường dẫn PHP nếu được yêu cầu)
+4. Sau khi cài đặt xong, mở **Command Prompt** và kiểm tra:
+```bash
+composer --version
+```
+
+### macOS
+
+Mở **Terminal** và chạy:
+```bash
+brew install composer
+```
+
+Hoặc cài đặt thủ công:
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+Kiểm tra:
+```bash
+composer --version
+```
+
+### Linux (Ubuntu/Debian)
+
+Mở **Terminal** và chạy:
+```bash
+sudo apt update
+sudo apt install composer
+```
+
+Hoặc cài đặt thủ công:
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+Kiểm tra:
+```bash
+composer --version
+```
+
+## 2. Cài đặt dependencies
+
+Mở Terminal/Command Prompt, di chuyển vào thư mục project và chạy:
+
+```bash
+composer install
+```
+
+Lệnh này sẽ tải và cài đặt tất cả thư viện cần thiết (PHPMailer) vào thư mục `vendor/`.
+
+## 3. Cấu hình file .env
+
+### Bước 1: Tạo file .env
+
+Copy file `.env.example` thành `.env`:
+
+**Windows (Command Prompt):**
+```bash
+copy .env.example .env
+```
+
+**macOS/Linux (Terminal):**
+```bash
+cp .env.example .env
+```
+
+### Bước 2: Cấu hình Database
+
+Mở file `.env` và điền thông tin:
+
+```env
+# Database
+DB_HOST='localhost'
+DB_NAME='homedecor_db'
+DB_USER='root'
+DB_PASS='your_password_here'
+DB_CHARSET='utf8mb4'
+```
+
+**Ví dụ cụ thể:**
+```env
+DB_HOST='localhost'
+DB_NAME='homedecor_db'
+DB_USER='root'
+DB_PASS='123456'
+DB_CHARSET='utf8mb4'
+```
+
+### Bước 3: Cấu hình Email (Gmail SMTP)
+
+#### Tạo App Password cho Gmail:
+
+1. Truy cập: https://myaccount.google.com
+2. Chọn **"Bảo mật"** (Security)
+3. Bật **"Xác minh 2 bước"** (2-Step Verification)
+4. Sau khi bật, truy cập: https://myaccount.google.com/apppasswords
+5. Chọn **"App"** → **"Mail"** và **"Device"** → **"Other"**
+6. Nhập tên: `Home Decor Shop`
+7. Click **"Generate"** → Sao chép mật khẩu 16 ký tự
+
+#### Điền vào file .env:
+
+```env
+# Email SMTP (Gmail)
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT='587'
+EMAIL_USER='yourname@gmail.com'
+EMAIL_PASS='your_app_password_here'
+EMAIL_FROM='yourname@gmail.com'
+EMAIL_FROM_NAME='Home Decor Shop'
+EMAIL_ENCRYPTION='tls'
+EMAIL_DEBUG='0'
+```
+
+**Ví dụ cụ thể:**
+```env
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT='587'
+EMAIL_USER='shop.homedecor@gmail.com'
+EMAIL_PASS='abcd efgh ijkl mnop'
+EMAIL_FROM='shop.homedecor@gmail.com'
+EMAIL_FROM_NAME='Home Decor Shop'
+EMAIL_ENCRYPTION='tls'
+EMAIL_DEBUG='0'
+```
+
+**Lưu ý:**
+- `EMAIL_PORT`: Dùng `587` cho TLS hoặc `465` cho SSL
+- `EMAIL_ENCRYPTION`: Dùng `tls` hoặc `ssl`
+- `EMAIL_DEBUG`: Đặt `0` (tắt) hoặc `2` (bật để xem lỗi)
+
+## 4. Chạy ứng dụng
+
+Sau khi cấu hình xong, chạy project bằng PHP built-in server:
+
+```bash
+php -S localhost:8000
+```
+
+Hoặc nếu dùng XAMPP/WAMP, đặt project vào thư mục `htdocs` hoặc `www` và truy cập:
+```
+http://localhost/homedecor
+```
+
+
 # Hướng dẫn cấu hình VirtualHost cho XAMPP
 
 Hướng dẫn này sẽ giúp bạn cấu hình VirtualHost trên XAMPP cho các hệ điều hành Linux, Windows và MacOS.

@@ -80,6 +80,48 @@ class User
         ]);
     }
 
+    // Static method to create new user
+    public static function create(array $data)
+    {
+        $db = Database::getInstance()->getConnection();
+
+        $username = $data['username'] ?? '';
+        $password = $data['password'] ?? '';
+        $role = $data['role'] ?? 'customer';
+        $display_name = $data['display_name'] ?? null;
+        $email = $data['email'] ?? null;
+        $avatar = $data['avatar'] ?? null;
+
+        if (empty($username) || empty($password)) {
+            throw new Exception('Username and password are required');
+        }
+
+        // Check if username exists
+        $stmt = $db->prepare("SELECT id FROM users WHERE username = :username LIMIT 1");
+        $stmt->execute([':username' => $username]);
+        if ($stmt->fetch(PDO::FETCH_ASSOC)) {
+            throw new Exception('Username already exists');
+        }
+
+        // Hash password if not already hashed
+        if (!password_get_info($password)['algo']) {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        // Insert new user
+        $stmt = $db->prepare("INSERT INTO users (username, password, role, display_name, email, avatar) VALUES (:username, :password, :role, :display_name, :email, :avatar)");
+        $success = $stmt->execute([
+            ':username' => $username,
+            ':password' => $password,
+            ':role' => $role,
+            ':display_name' => $display_name,
+            ':email' => $email,
+            ':avatar' => $avatar
+        ]);
+
+        return $success ? $db->lastInsertId() : false;
+    }
+
     // Find a user record by username, return User instance or null
     public static function findByUsername(string $username)
     {
