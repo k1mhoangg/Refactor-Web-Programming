@@ -3,10 +3,11 @@
 ?>
 <?php if (!empty($product)): ?>
 <div class="product-detail-card">
+    
     <div>
-        <img src="<?= htmlspecialchars($product['image_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="product-detail-image">
+        <img src="<?= htmlspecialchars('/' . ltrim($product['image_url'], '/')) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="w-full h-48 object-cover rounded-md mb-2 transition-transform hover:scale-105" loading="lazy">    
     </div>
-    <div class="product-detail-info">
+        <div class="product-detail-info">
         <h1 class="product-detail-title"><?= htmlspecialchars($product['name']) ?></h1>
         <div class="product-detail-desc"><?= nl2br(htmlspecialchars($product['description'])) ?></div>
         <div>
