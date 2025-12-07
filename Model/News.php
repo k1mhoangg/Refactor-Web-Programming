@@ -103,4 +103,23 @@ class News
         $stmt = $db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+        // Tìm kiếm tin tức theo tiêu đề
+    public static function searchByTitle($title, $limit = 0, $offset = 0)
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM news WHERE title LIKE :title ORDER BY created_at DESC";
+        if ($limit > 0) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':title', '%' . $title . '%', PDO::PARAM_STR);
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':title', '%' . $title . '%', PDO::PARAM_STR);
+            $stmt->execute();
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
