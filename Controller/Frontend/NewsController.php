@@ -7,7 +7,12 @@ class NewsController
 {
     public function index()
     {
-        $newsList = News::all();
+        $search = isset($_GET['q']) ? trim($_GET['q']) : '';
+        if ($search !== '') {
+            $newsList = News::searchByTitle($search);
+        } else {
+            $newsList = News::all();
+        }
         require BASE_PATH . 'view/frontend/news/index.php';
     }
 

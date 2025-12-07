@@ -11,6 +11,10 @@
     <?php require BASE_PATH . '/components/header.php'; ?>
     <main class="container mx-auto py-10">
         <h1 class="text-3xl font-bold text-center mb-8">Tin tức mới nhất</h1>
+        <form method="get" action="/news" class="max-w-xl mx-auto mb-8 flex gap-2">
+            <input type="text" name="q" value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" class="form-input flex-1" placeholder="Tìm theo tiêu đề...">
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Tìm kiếm</button>
+        </form>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php foreach ($newsList as $news): ?>
                 <div class="bg-white rounded-lg shadow p-5 flex flex-col">
