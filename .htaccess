@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Nếu file hoặc thư mục tồn tại thì cứ mở bình thường (ví dụ ảnh, css)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Còn lại tất cả chuyển về index.php xử lý
+RewriteRule ^ index.php [QSA,L]

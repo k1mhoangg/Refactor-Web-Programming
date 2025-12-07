@@ -1,0 +1,9 @@
+# Bật mod_rewrite
+RewriteEngine On
+
+# Nếu file hoặc folder tồn tại thì không rewrite 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Gửi tất cả request đến index.php
+RewriteRule ^ index.php [QSA,L]
