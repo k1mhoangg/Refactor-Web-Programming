@@ -101,5 +101,30 @@ class Product
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+    public static function searchByKeyword(string $keyword): array
+    {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM products WHERE name LIKE :kw ORDER BY created_at DESC";
+        $stmt = $db->prepare($sql);
+        $kw = '%' . $keyword . '%';
+        $stmt->bindValue(':kw', $kw, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Lấy nhiều product theo mảng ID, giữ đúng thứ tự input
+     */
+    public static function findByIds(array $ids): array
+    {
+        $ids = array_values(array_filter(array_map('intval', $ids)));
+        if (empty($ids))
+            return [];
+
+        $db = Database::getInstance()->getConnection();
+        $in = implode(',', $ids);
+        $sql = "SELECT * FROM products WHERE id IN ($in) ORDER BY FIELD(id, $in)";
+        $stmt = $db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

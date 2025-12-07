@@ -112,7 +112,11 @@ class AuthController
         ];
         $_SESSION['flash'] = ['type' => 'success', 'message' => 'Đăng nhập thành công.'];
 
-        header('Location: /');
+        // Redirect to previous URL if it exists, otherwise redirect to home
+        $previousUrl = getPreviousUrl();
+        $redirectUrl = $previousUrl ? $previousUrl : '/';
+        
+        header('Location: ' . $redirectUrl);
         exit;
     }
 

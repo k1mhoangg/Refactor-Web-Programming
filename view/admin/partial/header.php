@@ -51,6 +51,13 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="/admin/home-settings">
+                                <span class="nav-link-icon"><i class="ti ti-home"></i></span>
+                                <span class="nav-link-title">Quản lý trang chủ</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/admin/users">
                                 <span class="nav-link-icon"><i class="ti ti-users"></i></span>
                                 <span class="nav-link-title">Quản lý người dùng</span>
@@ -71,10 +78,32 @@
                             </a>
                         </li>
 
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/about">
+                                <span class="nav-link-icon"><i class="ti ti-info-circle"></i></span>
+                                <span class="nav-link-title">Quản lý trang giới thiệu</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/contact-settings">
+                                <span class="nav-link-icon"><i class="ti ti-address-book"></i></span>
+                                <span class="nav-link-title">Quản lý trang liên hệ</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/products">
                                 <span class="nav-link-icon"><i class="ti ti-box"></i></span>
                                 <span class="nav-link-title">Quản lý sản phẩm</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/faqs">
+                                <span class="nav-link-icon"><i class="ti ti-question-mark"></i></span>
+                                <span class="nav-link-title">Quản lý trang hỏi/đáp</span>
                             </a>
                         </li>
 

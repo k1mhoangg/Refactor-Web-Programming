@@ -7,7 +7,23 @@
 // Frontend routes (controller namespace: Controller\Frontend)
 $router->addRoute('GET', '/', 'Frontend/HomeController');
 $router->addRoute('GET', '/contact', 'Frontend/ContactController');
+$router->addRoute('GET', '/pricing', 'Frontend/PricingController@index');
+$router->addRoute('GET', '/product/{id}', 'Frontend/ProductController@detail');
+$router->addRoute('GET', '/cart', 'Frontend/CartController@view');
+$router->addRoute('POST', '/cart/add', 'Frontend/CartController@add');
 $router->addRoute('POST', '/contact', 'Frontend/ContactController@submit');
+$router->addRoute('POST', '/cart/checkout', 'Frontend/CartController@checkout');
+
+
+$router->addRoute('GET', '/about', 'Frontend/AboutController');
+
+$router->addRoute('GET', '/faq', 'Frontend/FaqController');
+$router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
+$router->addRoute('GET', '/search', 'Frontend/ProductController@search');
+
+$router->addRoute('GET', '/about', 'Frontend/AboutController');
+$router->addRoute('GET', '/faq', 'Frontend/FaqController');
+$router->addRoute('POST', '/faq', 'Frontend/FaqController@submit');
 
 // Profile routes (chỉ customer hoặc admin) -> Controller\Frontend\UserController
 $router->addRoute('GET', '/profile', 'Frontend/UserController@edit');
@@ -48,6 +64,7 @@ $router->addRoute('GET', '/admin/contacts', 'Admin/ContactsController@index');
 $router->addRoute('GET', '/admin/contacts/view', 'Admin/ContactsController@view'); // ?id=
 $router->addRoute('POST', '/admin/contacts/status', 'Admin/ContactsController@updateStatus');
 $router->addRoute('POST', '/admin/contacts/delete', 'Admin/ContactsController@delete');
+$router->addRoute('POST', '/admin/contacts/reply', 'Admin/ContactsController@reply'); // <-- added reply route
 
 // Pages/content management
 $router->addRoute('GET', '/admin/pages', 'Admin/PagesController@index');

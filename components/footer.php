@@ -63,9 +63,9 @@
     <div class="flex-1 min-w-[200px]">
       <h3 class="text-white font-semibold mb-3 uppercase">Liên hệ</h3>
       <ul class="space-y-2 text-gray-400">
-        <li>📍 34 Phường Thượng Cát, Quận Bắc Từ Liêm, TP. Hà Nội</li>
-        <li>📞 0904706666</li>
-        <li>✉ nvtdecor@gmail.com</li>
+        <li>&#128205; Trường Đại học Bách Khoa – ĐHQG-HCM, 268 Lý Thường Kiệt, Phường 14, Quận 10, TP. Hồ Chí Minh</li>
+        <li>&#128222; 0904706666</li>
+        <li>&#9993; homedecor0383@gmail.com</li>
       </ul>
 
       <!-- Social icons -->
@@ -80,12 +80,6 @@
   <!-- Bottom Bar -->
   <div
     class="border-t border-gray-700 mt-10 pt-4 w-[90%] mx-auto flex flex-wrap justify-between items-center text-gray-500 text-xs">
-    <p>© Bản quyền thuộc về <span class="text-gray-300">Home Decor Việt Nam</span> | Cung cấp bởi Sapo</p>
-    <div class="flex items-center gap-2 mt-2 md:mt-0">
-      <img src="images/sample.jpg" alt="Visa" class="w-10 h-6 object-contain bg-gray-700">
-      <img src="images/sample.jpg" alt="Mastercard" class="w-10 h-6 object-contain bg-gray-700">
-      <img src="images/sample.jpg" alt="PayPal" class="w-10 h-6 object-contain bg-gray-700">
-      <img src="images/sample.jpg" alt="Discover" class="w-10 h-6 object-contain bg-gray-700">
-    </div>
+    <p> &copy; <?php echo date('Y'); ?> Bản quyền thuộc về <span class="text-gray-300">Home Decor</span></p>
   </div>
 </footer>

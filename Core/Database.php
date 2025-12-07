@@ -43,10 +43,4 @@ class Database
     {
         return $this->connection;
     }
-    function getNewsBySlug($slug) {
-        global $pdo; // hoặc connection database của bạn
-        $stmt = $pdo->prepare("SELECT * FROM news WHERE slug = :slug LIMIT 1");
-        $stmt->execute(['slug' => $slug]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 }

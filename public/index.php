@@ -20,21 +20,8 @@ if (file_exists(BASE_PATH . 'Core/utils.php')) {
 
 $router = new \Core\Router(); // autoloader should handle this
 require_once BASE_PATH . 'routes-register.php';
-$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-// Lấy thư mục cha của index.php, ví dụ: /HomeDecor/public
-$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-
-// Loại base path khỏi request
-if ($basePath !== '' && $basePath !== '/') {
-    $uri = '/' . ltrim(str_replace($basePath, '', $requestUri), '/');
-} else {
-    $uri = $requestUri;
-}
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 try {
-    //echo "<pre>REQUEST_URI = " . $_SERVER['REQUEST_URI'] . "\n";
-    //echo "CALCULATED \$uri = " . $uri . "</pre>";
-
     $router->dispatch($_SERVER['REQUEST_METHOD'], $uri);
 } catch (Error $e) {
     error_log('Router instance is not available: ' . $e->getMessage());
