@@ -1,7 +1,7 @@
 <?php include __DIR__ . '/partial/header.php'; ?>
 
 <?php
-// $countUsers, $countContacts, $countPages, $recentUsers, $recentContacts
+// $countUsers, $countContacts, $recentUsers, $recentContacts
 // are provided by Controller\Admin\AdminController::index()
 if (session_status() === PHP_SESSION_NONE)
     session_start();
@@ -21,7 +21,7 @@ $currentUser = $_SESSION['user']['username'] ?? 'Admin';
         </div>
 
         <div class="row row-deck row-cards">
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -35,7 +35,7 @@ $currentUser = $_SESSION['user']['username'] ?? 'Admin';
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -49,21 +49,7 @@ $currentUser = $_SESSION['user']['username'] ?? 'Admin';
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <span class="stamp stamp-md bg-yellow-lt me-3"><i class="ti ti-file-text"></i></span>
-                            <div>
-                                <h3 class="m-0"><?php echo htmlspecialchars($countPages ?? 0); ?></h3>
-                                <div class="text-muted">Pages</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
